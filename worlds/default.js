@@ -1,683 +1,506 @@
-    // Copyright 2022 by Croquet Corporation, Inc. AlFfp0l Rights Reserved.
-    // https://croquet.io
-    // info@croquet.io
-    
-    export function init(Constants) {
-        Constants.AvatarNames = ["newwhite",  "marchhare", "queenofhearts", "cheshirecat", "alice"];
-    
-        /* Alternatively, you can specify a card spec for an avatar,
-           instead of a string for the partical file name, to create your own avatar.
-           You can add behaviorModules here. Also, if the system detects a behavior module
-           named AvatarEventHandler, that is automatically installed to the avatar.
-            {
-                type: "3d",
-                modelType: "glb",
-                name: "rabbit",
-                dataLocation: "./assets/avatars/newwhite.zip",
-                dataRotation: [0, Math.PI, 0],
-                dataScale: [0.3, 0.3, 0.3],
-            }
-        */
-    
-        Constants.ExcludedSystemBehaviorModules = ["avatarEvents.js"];
-        Constants.UserBehaviorDirectory = "behaviors/default";
-        Constants.UserBehaviorModules = [
-            "avatarEvents.js", "canvasPawn.js", "csmLights.js", 'jumpWorld.js', 'synchronousLoad.js', 'urlLink.js'
-        ];
-    
-        Constants.DefaultCards = [
-            {
-                card: {
-                    name:"world model",
-                    layers: ["walk"],
-                    type: "3d",
-                    singleSided: true,
-                    shadow: true,
-                    translation:[0, -1.7, 0],
-                    placeholder: true,
-                    placeholderSize: [400, 0.1, 400],
-                    placeholderColor: 0x808080,
-                    placeholderOffset: [0, 0, 0],
-                    timeout: 30000,
-                    // behaviorModules: ['PlaceholderPawn']
-                    // behaviorModules: ['LoadCards']
-                    behaviorModules: ['SynchronousCardLoader']
-                }
-            },
-            {
-                card: {
-                    name: "light",
-                    layers: ["light"],
-                    type: "lighting",
-                    behaviorModules: ["Light"],
-                    dataLocation: "3OF2-s4U1ZOJduGATmLEIXo1iTkQHd5ZBknKgL5SvqpQJzs7Pzx1YGApJiMqPGE6PGEsPSA-Oio7YSYgYDpgCCsZLTYjBjwOJB4sDRcrfAg3Ljk2OBoEGBYWfWAmIGEsPSA-Oio7YSImLD0gOSo9PCpgPwB9AAIIISx8YiYneScqKyQaIisNLHkaGT8YKg56JQwQfHstPiNiGQ49e2ArLjsuYCMBPgMiCQt3OQskGhcleSp9HQIIfXseHgo7EAo9CB48FRwpegsCLH4OIwY",
-                    fileName: "/abandoned_parking_4k.jpg",
-                    dataType: "jpg",
-                }
-            },
-            /* {
-                card: {
-                    name: "canvas",
-                    translation: [0.568, -0.318, -0.957],
-                    rotation: [0, 0, 0],
-                    scale: [3, 3, 3],
-                    type: "2d",
-                    textureType: "canvas",
-                    textureWidth: 1024,
-                    textureHeight: 768,
-                    width: 1,
-                    height: 0.75,
-                    // color: 0xffffff,
-                    depth: 0.05,
-                    cornerRadius: 0.1,
-                    behaviorModules: ["CanvasPawn"],
-                }
-            }, */
-           
-            
-            {
-                "card": {
-                    "cornerRadius": 0.02,
-                    "fileName": "Christmas-Poster.png",
-                    "fullBright": true,
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "img",
-                    "name": "Christmas-Poster.png",
-                    "rotation": [
-                        0,
-                        0.7237099543549771,
-                        0,
-                        0.6901042689097902
-                    ],
-                    "scale": [
-                        4.020703324814061,
-                        4.020703324814061,
-                        4.020703324814061
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "textureLocation": "3C7pLwmb9qZ1NFKCbS9kisDowpe_bBG-_9Dh5qgOWzfYKzc3MzB5bGwlKi8mMG02MG0gMSwyNiY3bSosbDZsLSoMMQgFdXZxKw0EFi0QcTMtNwh1BxIRcQoycWwgLC5tNi83KjAqLm0vKi0nIm0hJjEtIjEnbS4qIDEsNSYxMCZsEnQkJRs3LBszO3AhNwdzIgp7d3p2EAEndSQSDxAAFnEZKCUsdhtwCjoce2wnIjcibAZzCDIpFC0tKgg5GhEIDRQqcBIWBjkhMBsXCQsaegcWLXo5DAglMS5ydw4",
-                    "textureType": "image",
-                    "translation": [
-                        -0.9824268760068162,
-                        -0.2990113590235549,
-                        -11.980274028730268
-                    ],
-                    "type": "2d"
-                }
-            },
+// Copyright 2022 by Croquet Corporation, Inc. All Rights Reserved.
+// https://croquet.io
+// info@croquet.io
 
-            {
-                "card": {
-                    "cornerRadius": 0.02,
-                    "fileName": "Summer-Poster.png",
-                    "fullBright": true,
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "img",
-                    "name": "Summer-Poster.png",
-                    "rotation": [
-                        0,
-                        0,
-                        0,
-                        0
-                    ],
-                    "scale": [
-                        4.899302937007668,
-                        4.899302937007668,
-                        4.899302937007668
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "textureLocation": "34uXMvNRPx9GuFj7bp5s9eiMLJHT-z3WChRt7Ii2_BXoXEBAREcOGxtSXVhRRxpBRxpXRltFQVFAGl1bG0EbWl17Rn9yAgEGXHpzYVpnBkRaQH8CcGVmBn1FBhtXW1kaQVhAXUddWRpYXVpQVRpWUUZaVUZQGlldV0ZbQlFGR1EbZQNTUmxAW2xETAdWQHAEVX0MAA0BZ3ZQAlNleGd3YQZuX1JbAWwHfU1rDBtQVUBVG3pWeE5_WUd9Akx3BmZTU01SQXtWUHx5XVlkYlVnRXJ_e3Z5AV18cm1MXWE",
-                    "textureType": "image",
-                    "translation": [
-                        -2.4777855657131433,
-                        0.923600081551349,
-                        -9.058288163543128
-                    ],
-                    "type": "2d"
-                }
+export function init(Constants) {
+    Constants.AvatarNames = [
+        "newwhite", "madhatter", "marchhare", "queenofhearts", "cheshirecat", "alice"
+    ];
+
+    Constants.UserBehaviorDirectory = "behaviors/default";
+    Constants.UserBehaviorModules = [
+        "ambientSound.js", "csmLights.js", "drawingCanvas.js", "showSalesOnApproach.js", 'text3D.js'
+    ];
+
+    const frameColor = 0x888888;
+
+    Constants.DefaultCards = [
+        {
+             card: {
+                layers: ['walk'],
+                name: "world model",
+                placeholder: true,
+                placeholderColor: 8421504,
+                placeholderOffset: [0, 0, 0],
+                placeholderSize: [400, 0.1, 400],
+                shadow: true,
+                singleSided: true,
+                translation: [0, -1.7, 0],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                behaviorModules: ['Light'],
+                dataLocation: "3OF2-s4U1ZOJduGATmLEIXo1iTkQHd5ZBknKgL5SvqpQJzs7Pzx1YGApJiMqPGE6PGEsPSA-Oio7YSYgYDpgCCsZLTYjBjwOJB4sDRcrfAg3Ljk2OBoEGBYWfWAmIGEsPSA-Oio7YSImLD0gOSo9PCpgPwB9AAIIISx8YiYneScqKyQaIisNLHkaGT8YKg56JQwQfHstPiNiGQ49e2ArLjsuYCMBPgMiCQt3OQskGhcleSp9HQIIfXseHgo7EAo9CB48FRwpegsCLH4OIwY",
+                dataType: "jpg",
+                fileName: "/abandoned_parking_4k.jpg",
+                layers: ['light'],
+                name: "light",
+                type: "lighting",
+             }
+          },
+         /* {
+             card: {
+                layers: ['walk'],
+                name: "world model",
+                placeholder: true,
+                placeholderColor: 8421504,
+                placeholderOffset: [0, 0, 0],
+                placeholderSize: [400, 0.1, 400],
+                shadow: true,
+                singleSided: true,
+                translation: [0, -1.7, 0],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                behaviorModules: ['Light'],
+                dataLocation: "3ufJH8OYqLgn8wmLwBtflfTnehwL-9PeGUnA76uU-CegHQEBBQZPWloTHBkQBlsABlsWBxoEABABWxwaWgBaGxw6Bz4zQ0BHHTsyIBsmRwUbAT5DMSQnRzwER1oWGhhbABkBHAYcGFsZHBsRFFsXEAcbFAcRWxgcFgcaAxAHBhBaPTICEDcSJQQ7TT1HRTMCOBYMIzw7DD47R0Y8IRQMQ0RBHAMkFzgBJC8AJFoRFAEUWhg5HSMEGkMBWAUsE1gxByYdREEnPD5EGBtNOTQaHBsnAVgkAD0ULDE8PSA",
+                dataType: "exr",
+                fileName: "/abandoned_parking_4k.jpg",
+                layers: ['light'],
+                name: "light",
+                type: "lighting",
+             }
+          }, */
+         {
+             card: {
+                dataLocation: "3ZNt1SzubRR9wZkLuEyI_AeR6zQfv5ZM0vyMbyWNSIoAMi4uKilgdXU8MzY_KXQvKXQ5KDUrLz8udDM1dS91NDMVKBEcbG9oMhQdDzQJaCo0LhFsHgsIaBMraHU5NTd0LzYuMykzN3Q2MzQ-O3Q4Pyg0Oyg-dDczOSg1LD8oKT91Eh0tPxg9CisUYhJoahwtFzkjDBMUIxEUaGkTDjsjbGtuMywLOBcuCwAvC3U-Oy47dWoRGTQdEQoRLAwWFzk2OBBjaTY8Kik9DgkXaGkfCmMwEzEVbiI9MTk5bWo",
+                dataScale: [0.013758715870680515, 0.013758715870680515, 0.013758715870680515],
+                fileName: "/Morrocan_Bazaar.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/Morrocan_Bazaar.glb",
+                rotation: [0, 0, 0, 1],
+                scale: [62.89131587298363, 62.89131587298363, 62.89131587298363],
+                shadow: true,
+                singleSided: true,
+                translation: [0, -1.601223631961526, -59.28543835721466],
+                type: "3d",
+             }
+          },
+         /* {
+             card: {
+                dataLocation: "3o3hakguo_SMCgN-UKy6Jr_q34ibKFdaiw7a6a09xM40BxsbHxxVQEAJBgMKHEEaHEEMHQAeGgobQQYAQBpAAQYgHSQpWVpdByEoOgE8XR8BGyRZKz49XSYeXUAMAAJBGgMbBhwGAkEDBgELDkENCh0BDh0LQQIGDB0AGQodHApAJygYCi0IPx4hVyddXykYIgwWOSYhFiQhXVwmOw4WWV5bBhk-DSIbPjUaPkALDhsOQDheLi0XLh8kFzwXNQwJDQM3OAkMBlwjHxo4XCowDiMXA1dZFRgIOB8oOBg",
+                dataScale: [0.12582829766470943, 0.12582829766470943, 0.12582829766470943],
+                fileName: "/Market_Ground.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/Market_Ground.glb",
+                rotation: [0, 0.1564190613524732, 0, 0.9876907801764737],
+                scale: [40.26137069300182, 40.26137069300182, 40.26137069300182],
+                shadow: true,
+                singleSided: true,
+                translation: [-0.4296809044960592, -1.580358535577318, -61.00522239223247],
+                type: "3d",
+             }
+          }, */
+         {
+             card: {
+                dataLocation: "3F_75-ErzMiVYMiBi6S-S1hPJlToOM98mK3H1e1KAozkLjIyNjV8aWkgLyojNWgzNWglNCk3MyMyaC8paTNpKC8JNA0AcHN0LggBEygVdDYoMg1wAhcUdA83dGklKStoMyoyLzUvK2gqLygiJ2gkIzQoJzQiaCsvJTQpMCM0NSNpDgExIwQhFjcIfg50dgAxCyU_EA8IPw0IdHUPEic_cHdyLzAXJAsyFxwzF2kiJzInaSB_AiJ1JwkFAAsSLQQSDCV0FQQ_Cz4RGQAOAHQSPjUoLHQAEDQMMS5-FQs",
+                dataScale: [0.014301616678876375, 0.014301616678876375, 0.014301616678876375],
+                fileName: "/fruit_veg_market.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/fruit_veg_market.glb",
+                rotation: [0.25405717879143186, 0.7671792306479767, -0.17915149990258125, -0.5610665896750336],
+                scale: [0.8370604748814573, 0.8370604748814573, 0.8370604748814573],
+                shadow: true,
+                singleSided: true,
+                translation: [-1.6141639235512257, -0.5003171337916479, -60.44029106091807],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3JJighlDYhEtrRBhrgi3UhQPAoDyblQQ3KYrK308oea8Ij4-OjlwZWUsIyYvOWQ_OWQpOCU7Py8-ZCMlZT9lJCMFOAEMfH94IgQNHyQZeDokPgF8DhsYeAM7eGUpJSdkPyY-IzkjJ2QmIyQuK2QoLzgkKzguZCcjKTglPC84OS9lAg09LwgtGjsEcgJ4egw9BykzHAMEMwEEeHkDHiszfHt-IzwbKAc-GxA_G2UuKz4rZTsyPTJ5H3IfIQEnPhsFDS8mDSg6FSITeAcPeQlzLQggJRMNKyksDicMLno",
+                dataScale: [1.4007759631899461, 1.4007759631899461, 1.4007759631899461],
+                fileName: "/camel.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/camel.glb",
+                rotation: [0, 0.9595072515034507, 0, 0.28168392625830424],
+                scale: [1.2430658531706906, 1.2430658531706906, 1.2430658531706906],
+                shadow: true,
+                singleSided: true,
+                translation: [9.840888354259413, -1.5320777075484493, -37.51873282992591],
+                type: "3d",
+             }
+          },
+         /* {
+             card: {
+                dataLocation: "3eEiFnhhEXNSFIWvODol2SAoQjBoLXJJqtK0lQzQVbKgDRERFRZfSkoDDAkAFksQFksGFwoUEAARSwwKShBKCwwqFy4jU1BXDSsiMAs2VxULES5TITQ3VywUV0oGCghLEAkRDBYMCEsJDAsBBEsHABcLBBcBSwgMBhcKEwAXFgBKLSISACcCNRQrXS1XVSMSKAYcMywrHC4rV1YsMQQcU1RRDBM0BygRND8QNEoBBBEESgcyNBEwIAwXFFctUAAVCjVcMxc3ChYODC4ICCgNUDcdKCYSOj0QAQMUUiw",
+                dataScale: [1.0169014782746135, 1.0169014782746135, 1.0169014782746135],
+                fileName: "/fine_persian_heriz_carpet.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/fine_persian_heriz_carpet.glb",
+                rotation: [-0.0009960302710828003, -0.7021766053758017, 7.841071160211643e-05, 0.7120021184226741],
+                scale: [3.0748513956352816, 3.0748513956352816, 3.0748513956352816],
+                shadow: true,
+                singleSided: true,
+                translation: [24.247694467372682, -1.517326769923463, -46.45287708875214],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3jxmOMKhWf0Ekblsndi2_M86o2aM6IMzDT0NivDcn4-gAh4eGhlQRUUMAwYPGUQfGUQJGAUbHw8eRAMFRR9FBAMlGCEsXF9YAiQtPwQ5WBoEHiFcLjs4WCMbWEUJBQdEHwYeAxkDB0QGAwQOC0QIDxgECxgORAcDCRgFHA8YGQ9FIi0dDygNOhskUiJYWiwdJwkTPCMkEyEkWFkjPgsTXFteAxw7CCceOzAfO0UOCx4LRQMpGzA1JjUoK1smKTkTMzsvAjpdHzs5LiAzGx5HPl4MDyUQMAMMKwAdUyc",
+                dataScale: [1.029702999085589, 1.029702999085589, 1.029702999085589],
+                fileName: "/fine_persian_esfahan_carpet.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/fine_persian_esfahan_carpet.glb",
+                rotation: [0.7078375836017685, -0.7063745572648267, 0.0006863070759916972, -0.0006848885509646758],
+                scale: [1.6876982052118132, 1.6876982052118132, 1.6876982052118132],
+                shadow: true,
+                singleSided: true,
+                translation: [28.078846192270966, 2.0714492454232682, -44.094311775015996],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3yr2-Mz-JmsykBsydQrjAxkMMD-o67qA8JoLXQw00u3UEQ0NCQpDVlYfEBUcClcMClcaCxYIDBwNVxAWVgxWFxA2CzI_T0xLETc-LBcqSwkXDTJPPSgrSzAIS1YaFhRXDBUNEAoQFFcVEBcdGFcbHAsXGAsdVxQQGgsWDxwLChxWMT4OHDseKQg3QTFLST8ONBoALzA3ADI3S0owLRgAT0hNEA8oGzQNKCMMKFYdGA0YVj49KhYOPRE8NjFAMgANExA2M0ogJgEwPC8YMwwOJjg1EhQQVDoDFzEWNjw",
+                dataScale: [1.5833251113466655, 1.5833251113466655, 1.5833251113466655],
+                fileName: "/persian_old_qashqai_kilim.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/persian_old_qashqai_kilim.glb",
+                rotation: [0, 0.5979116398736295, 0, -0.8015620193744383],
+                shadow: true,
+                singleSided: true,
+                translation: [-3.530818892101241, -1.5159166455518087, -46.00273507196016],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3HXFO3TUEzXrmmKiSQjGvXh9xvAW6WI6NhlD81mNIjysIDw8ODtyZ2cuISQtO2Y9O2YrOic5PS08ZiEnZz1nJiEHOgMOfn16IAYPHSYbejgmPAN-DBkaegE5emcrJyVmPSQ8ITshJWYkISYsKWYqLTomKTosZiUhKzonPi06Oy1nAA8_LQovGDkGcAB6eA4_BSsxHgEGMQMGensBHCkxfnl8IT4ZKgU8GRI9GWcsKTwpZzAhJR4LLBghfAAyAjEOOzgtJik_KiIHHhgZJmV-ejsZfSZ9PAsjen0dPS8",
+                dataScale: [2.1323969820002877, 2.1323969820002877, 2.1323969820002877],
+                fileName: "/persian_malayer_carpet.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/persian_malayer_carpet.glb",
+                rotation: [0.7206911169213315, -0.6908241111766588, 0.048427967442373016, -0.03195455174249269],
+                scale: [1.4964607300793924, 1.4964607300793924, 1.4964607300793924],
+                shadow: true,
+                singleSided: true,
+                translation: [27.396929836633998, 1.928787013689913, -49.283869303113505],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "33cA-tS4lAgsGgznAspTMKtu9nKnDHpYq-Ku4-DqMrbYW0dHQ0AJHBxVWl9WQB1GQB1QQVxCRlZHHVpcHEYcXVp8QXh1BQYBW310Zl1gAUNdR3gFd2JhAXpCARxQXF4dRl9HWkBaXh1fWl1XUh1RVkFdUkFXHV5aUEFcRVZBQFYce3REVnFUY0J9C3sBA3VEflBKZXp9Snh9AQB6Z1JKBQIHWkViUX5HYmlGYhxXUkdSHEAEXUB2ZHVyQgBeVlhKVH0GZHYEHmoLd1JiZHsEYgF4fl9gAkV9BXFdcmY",
+                dataScale: [18.246116780454763, 18.246116780454763, 18.246116780454763],
+                fileName: "/tbilat_drums.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/tbilat_drums.glb",
+                rotation: [0, -0.8353562665468184, 0, 0.5497089301993928],
+                scale: [0.310543199582027, 0.310543199582027, 0.310543199582027],
+                shadow: true,
+                singleSided: true,
+                translation: [26.802323565395746, -1.5426046043685142, -41.488880466124265],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3N57xYZ8hzBWR0C5VhrcoiLRAz6OMTd8OBXpHfdIJMuQJjo6Pj10YWEoJyIrPWA7PWAtPCE_Oys6YCchYTthICcBPAUIeHt8JgAJGyAdfD4gOgV4Ch8cfAc_fGEtISNgOyI6Jz0nI2AiJyAqL2AsKzwgLzwqYCMnLTwhOCs8PSthBgk5KwwpHj8AdgZ8fgg5Ay03GAcANwUAfH0HGi83eH96JzgfLAM6HxQ7H2EqLzovYTkBIAFjHxc7JS89fx8ofTZ3GA8YHx8DeRsiHysXFHcdBhQGIjcjdgYgJRs",
+                dataScale: [0.00397519403007733, 0.00397519403007733, 0.00397519403007733],
+                fileName: "/ottoman_pillow_and_carpets_v2.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/ottoman_pillow_and_carpets_v2.glb",
+                rotation: [0, -0.8388802460081594, 0, 0.5443160229657859],
+                scale: [2.0423975550304685, 2.0423975550304685, 2.0423975550304685],
+                shadow: true,
+                singleSided: true,
+                translation: [24.65108555294543, -1.5135099372875873, -47.630196934454645],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3kjNWt9wIkK5UE4AUVn4-kIvv1ruF8qKyDjUlfFTxlwEAx8fGxhRREQNAgcOGEUeGEUIGQQaHg4fRQIERB5EBQIkGSAtXV5ZAyUsPgU4WRsFHyBdLzo5WSIaWUQIBAZFHgcfAhgCBkUHAgUPCkUJDhkFChkPRQYCCBkEHQ4ZGA5EIywcDikMOxolUyNZWy0cJggSPSIlEiAlWVgiPwoSXVpfAh06CSYfOjEeOkQPCh8KRA8pCVsnMzNdOiMFJhoiXgksXiwtEl0COh4nPCobLF86LSwEWy4jAS4jDQw",
+                dataScale: [0.21079349120523178, 0.21079349120523178, 0.21079349120523178],
+                fileName: "/Untitled.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/Untitled.glb",
+                rotation: [0, -0.6891967104145372, 0, 0.7245742849106505],
+                scale: [10.784137411087485, 10.784137411087485, 10.784137411087485],
+                shadow: true,
+                singleSided: true,
+                translation: [-3.343272157145159, -1.5910963993753406, -61.07724027654654],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3Ylsb0iuSPCl4DMOhv1pLTCXFREYAnMWpdHsPOmK-NycMS0tKSpjdnY_MDU8KncsKnc6KzYoLDwtdzA2dix2NzAWKxIfb2xrMRceDDcKayk3LRJvHQgLaxAoa3Y6NjR3LDUtMCowNHc1MDc9OHc7PCs3OCs9dzQwOis2LzwrKjx2ER4uPBs-CSgXYRFraR8uFDogDxAXIBIXa2oQDTggb2htMC8IOxQtCAMsCHY9OC04dm41bQoNEC0BEgssIzI7D2oYMB48GmkuETQdLGxvBhFtOgNuPwgwdDU9AC4",
+                dataScale: [0.014301616678876375, 0.014301616678876375, 0.014301616678876375],
+                fileName: "/fruit_veg_market.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/fruit_veg_market.glb",
+                rotation: [0.24526484162422643, 0.6131503983081278, 0.2788919713880142, 0.697216619719391],
+                scale: [0.38106968175783507, 0.38106968175783507, 0.38106968175783507],
+                shadow: true,
+                singleSided: true,
+                translation: [-2.662677226541323, -1.0529718558719183, -58.37064283024959],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3WD84I-5JY4NgfQdR0cLtDQyd40aNmjAdtiSCfNNOPO0PyMjJyRteHgxPjsyJHkiJHk0JTgmIjIjeT44eCJ4OT4YJRwRYWJlPxkQAjkEZSc5IxxhEwYFZR4mZXg0ODp5IjsjPiQ-Onk7PjkzNnk1MiU5NiUzeTo-NCU4ITIlJDJ4HxAgMhUwByYZbx9lZxEgGjQuAR4ZLhwZZWQeAzYuYWZjPiEGNRojBg0iBngzNiM2eB8bBz4hBxovFWU0PDt6EANiFGIkJD8uHRQfLxEHNmQiJzMjMjU8OTotGQI",
+                dataScale: [1.5833251113466655, 1.5833251113466655, 1.5833251113466655],
+                fileName: "/persian_old_qashqai_kilim.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/persian_old_qashqai_kilim.glb",
+                rotation: [0, -0.727445995013549, 0, -0.6861649396018042],
+                scale: [2.3647361448511397, 2.3647361448511397, 2.3647361448511397],
+                shadow: true,
+                singleSided: true,
+                translation: [-25.13904909739354, -1.553662050147471, -49.030908432467285],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3FzaQB1honvYS8FK-24mZT68u8fTjOVvfAQk0LrVxvRALjIyNjV8aWkgLyojNWgzNWglNCk3MyMyaC8paTNpKC8JNA0AcHN0LggBEygVdDYoMg1wAhcUdA83dGklKStoMyoyLzUvK2gqLygiJ2gkIzQoJzQiaCsvJTQpMCM0NSNpDgExIwQhFjcIfg50dgAxCyU_EA8IPw0IdHUPEic_cHdyLzAXJAsyFxwzF2kiJzInaSgRcjAzMXIvKC4EBCsSfw0idQp1DRkxMiAZHAo1cyoxLBA_KCJ-LxV2ciU",
+                dataScale: [0.01913807166136353, 0.01913807166136353, 0.01913807166136353],
+                fileName: "/old_awning.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/old_awning.glb",
+                rotation: [0.005689280627694526, -0.0014366402468595947, -0.04400525952776098, 0.9990140666099927],
+                scale: [4.304431931001552, 4.304431931001552, 4.304431931001552],
+                shadow: true,
+                singleSided: true,
+                translation: [-28.32336783640196, 3.857191127518292, -46.80300591945737],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3bUOul4ZajQZzI86diBSEjsSvDg_TzTJ3hRzGop3e6qYChYWEhFYTU0ECw4HEUwXEUwBEA0TFwcWTAsNTRdNDAstECkkVFdQCiwlNwwxUBIMFilUJjMwUCsTUE0BDQ9MFw4WCxELD0wOCwwGA0wABxAMAxAGTA8LARANFAcQEQdNKiUVByAFMhMsWipQUiQVLwEbNCssGyksUFErNgMbVFNWCxQzAC8WMzgXM00GAxYDTRUUCgg9LTVUDzZSDzguISBTIRUSJjs0Gjc6MToJLBcuLisQFzZWFigYIVo",
+                dataScale: [1.0169014782746135, 1.0169014782746135, 1.0169014782746135],
+                fileName: "/fine_persian_heriz_carpet.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/fine_persian_heriz_carpet.glb",
+                rotation: [0, 0.4234329533040376, 0, 0.9059274441456228],
+                scale: [1.7858124431370441, 1.7858124431370441, 1.7858124431370441],
+                shadow: true,
+                singleSided: true,
+                translation: [-24.04451670209221, -1.5173546771486819, -42.51553560014388],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3t88AStXx1_dhh-mj6aIlfLJNIA-0jXlXgdNaujYIL6YHAAABAdOW1sSHRgRB1oBB1oXBhsFAREAWh0bWwFbGh07Bj8yQkFGHDozIRonRgQaAD9CMCUmRj0FRlsXGxlaARgAHQcdGVoYHRoQFVoWEQYaFQYQWhkdFwYbAhEGBxFbPDMDETYTJAU6TDxGRDIDORcNIj06DT86Rkc9IBUNQkVAHQIlFjkAJS4BJVsQFQAVWyxCIDUmE0AHHBUdQQ0lEyI6RT8HIAIVNiwQQQMXJTgaOA4HTT0BLi4gPxs",
+                dataScale: [0.00397519403007733, 0.00397519403007733, 0.00397519403007733],
+                fileName: "/ottoman_pillow_and_carpets_v2.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/ottoman_pillow_and_carpets_v2.glb",
+                rotation: [0, 0.7414095203898197, 0, 0.6710528467083182],
+                scale: [2.782023710964002, 2.782023710964002, 2.782023710964002],
+                shadow: true,
+                singleSided: true,
+                translation: [-26.099204179474015, -1.5034037504984505, -46.976541977039325],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3KIvKPfQcvARQl_ppcNEwVAPEiV5OOYqv3fGrqawAo7gIz8_OzhxZGQtIicuOGU-OGUoOSQ6Pi4_ZSIkZD5kJSIEOQANfX55IwUMHiUYeTslPwB9DxoZeQI6eWQoJCZlPic_IjgiJmUnIiUvKmUpLjklKjkvZSYiKDkkPS45OC5kAww8LgksGzoFcwN5ew08BigyHQIFMgAFeXgCHyoyfXp_Ij0aKQY_GhE-GmQvKj8qZBkeOgQ7OygoDTtzFCUKfT0zDyZmJDg6DhwbZhQiAwwiMyADKgEeMS8MLns",
+                dataScale: [0.0048657638393917796, 0.0048657638393917796, 0.0048657638393917796],
+                fileName: "/fountain.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/fountain.glb",
+                rotation: [0, -0.6998769001992389, 0, -0.7142634839941805],
+                scale: [2.6425529264419, 2.6425529264419, 2.6425529264419],
+                shadow: true,
+                singleSided: true,
+                translation: [-0.3746278930352842, -1.6005193753467817, -105.16813747333056],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                animationClipIndex: 0,
+                animationStartTime: 21436535,
+                dataLocation: "30GR708HcDGezrcJF5Pw9KNLH_ZVZCkQDj6br9Rru3tMWEREQEMKHx9WWVxVQx5FQx5TQl9BRVVEHllfH0UfXll_Qnt2BgUCWH53ZV5jAkBeRHsGdGFiAnlBAh9TX10eRVxEWUNZXR5cWV5UUR5SVUJeUUJUHl1ZU0JfRlVCQ1UfeHdHVXJXYEF-CHgCAHZHfVNJZnl-SXt-AgN5ZFFJBgEEWUZhUn1EYWpFYR9UUURRHwhGdlVZY3Nkc3hJWWRWBwQGXXlGXltKVEhFVUoEXHhjXlF-V1JEc1NkZXU",
+                dataScale: [8.777463145724749, 8.777463145724749, 8.777463145724749],
+                fileName: "/chicken_rig.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/chicken_rig.glb",
+                rotation: [0, 0.4196423002882065, 0, 0.9076895613638084],
+                scale: [0.1920843261303641, 0.1920843261303641, 0.1920843261303641],
+                shadow: true,
+                singleSided: true,
+                translation: [-2.517255220498856, -1.542546128873977, -62.58607183156211],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3Y2aOTYK4hNzvlsI5plimvPmtrHmP1Pd448zi7kq_vqsMS0tKSpjdnY_MDU8KncsKnc6KzYoLDwtdzA2dix2NzAWKxIfb2xrMRceDDcKayk3LRJvHQgLaxAoa3Y6NjR3LDUtMCowNHc1MDc9OHc7PCs3OCs9dzQwOis2LzwrKjx2ER4uPBs-CSgXYRFraR8uFDogDxAXIBIXa2oQDTggb2htMC8IOxQtCAMsCHY9OC04dmBsCRs7Kho_bBwtIAA-BikdbBApDR4XDjUbCG4-MBEwFihrOAA4KWApDjY",
+                dataScale: [1.4007759631899461, 1.4007759631899461, 1.4007759631899461],
+                fileName: "/camel (1).glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/camel (1).glb",
+                rotation: [0, -0.8984312359066382, 0, 0.4391142383791159],
+                shadow: true,
+                singleSided: true,
+                translation: [22.08634585766125, -1.5601909674381935, 27.54232421773533],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3yLSe7dbTJ4kdSYu1vhHSOZHExl8Agay7GBENtWNau6YEQ0NCQpDVlYfEBUcClcMClcaCxYIDBwNVxAWVgxWFxA2CzI_T0xLETc-LBcqSwkXDTJPPSgrSzAIS1YaFhRXDBUNEAoQFFcVEBcdGFcbHAsXGAsdVxQQGgsWDxwLChxWMT4OHDseKQg3QTFLST8ONBoALzA3ADI3S0owLRgAT0hNEA8oGzQNKCMMKFYdGA0YVjwoCSZPPzIBHSoTMQpIJgAvLEgKDT4JEi8zQA0AOzANAEhUMSZILT9KSjw",
+                dataScale: [1.4007759631899461, 1.4007759631899461, 1.4007759631899461],
+                fileName: "/camel (1).glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/camel (1).glb",
+                rotation: [0, -0.944249850832897, 0, -0.32922973620566576],
+                scale: [0.869846518176787, 0.869846518176787, 0.869846518176787],
+                shadow: true,
+                singleSided: true,
+                translation: [21.46091346961865, -1.5734867792395963, 30.56382966690708],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                animationClipIndex: 0,
+                animationStartTime: 23782744,
+                dataLocation: "34v3YZYlzUthnSZi4QMtQ3U0lEc1ATT_B06f6IU91PZoXEBAREcOGxtSXVhRRxpBRxpXRltFQVFAGl1bG0EbWl17Rn9yAgEGXHpzYVpnBkRaQH8CcGVmBn1FBhtXW1kaQVhAXUddWRpYXVpQVRpWUUZaVUZQGlldV0ZbQlFGR1EbfHNDUXZTZEV6DHwGBHJDeVdNYn16TX96Bgd9YFVNAgUAXUJlVnlAZW5BZRtQVUBVG30DZAx9bFkNZngBUgQDcV4NDEBVRgdyeXUDeG1-Q3hxUWwMbUdOXQFYUVc",
+                dataScale: [8.777463145724749, 8.777463145724749, 8.777463145724749],
+                fileName: "/chicken_rig.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/chicken_rig.glb",
+                rotation: [0, -0.9847400464110281, 0, -0.1740317241034116],
+                scale: [0.20615436599323478, 0.20615436599323478, 0.20615436599323478],
+                shadow: true,
+                singleSided: true,
+                translation: [-5.638349588152946, -1.5861188561400386, 28.71605799225141],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                animationClipIndex: 0,
+                animationStartTime: 23817098,
+                dataLocation: "371X3KMvYRMN2vml9lgx-XOpsiiaOd9oty54zgbx6KZoX0NDR0QNGBhRXltSRBlCRBlURVhGQlJDGV5YGEIYWV54RXxxAQIFX3lwYllkBUdZQ3wBc2ZlBX5GBRhUWFoZQltDXkReWhlbXllTVhlVUkVZVkVTGVpeVEVYQVJFRFIYf3BAUnVQZ0Z5D38FB3FAelROYX55Tnx5BQR-Y1ZOAQYDXkFmVXpDZm1CZhhTVkNWGEZ4AAcOTU1OZnp6Y39BVE15D0F8ZmBBT3BWc29hdWMET0QHc1tCeG5_eno",
+                dataScale: [8.777463145724749, 8.777463145724749, 8.777463145724749],
+                fileName: "/chicken_rig.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/chicken_rig.glb",
+                rotation: [0, -0.6611920292858575, 0, -0.7502167022993087],
+                scale: [0.14652201226732597, 0.14652201226732597, 0.14652201226732597],
+                shadow: true,
+                singleSided: true,
+                translation: [-5.638349588152946, -1.563000354264444, 24.404497616774485],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3nKVpxoAVZK_OBii9m18upy15U_5uDDdGkOO_7AWsc7gBhoaHh1UQUEIBwILHUAbHUANHAEfGwsaQAcBQRtBAAchHCUoWFtcBiApOwA9XB4AGiVYKj88XCcfXEENAQNAGwIaBx0HA0ACBwAKD0AMCxwADxwKQAMHDRwBGAscHQtBJikZCywJPh8gViZcXigZIw0XOCcgFyUgXF0nOg8XWF9aBxg_DCMaPzQbP0EKDxoPQR4bOwMDIxscFCU7XB8GAh0gKRwkHV86IA9DCCYKGDQIXQ0MKhsKCigpOFo",
+                dataScale: [51.48348748540405, 51.48348748540405, 51.48348748540405],
+                fileName: "/old_desert_door.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/old_desert_door.glb",
+                rotation: [null, null, null, null],
+                shadow: true,
+                singleSided: true,
+                translation: [-11.804893154485011, -0.011999999254941773, 16.825357947856062],
+                type: "3d",
+             }
+          }, */
+         {
+             card: {
+                dataLocation: "3MVKI2VQcZ9P52kYFeDMei1_BmWvWzaEyIgNLvyFZg6kJTk5PT53YmIrJCEoPmM4PmMuPyI8OCg5YyQiYjhiIyQCPwYLe3h_JQMKGCMefz0jOQZ7CRwffwQ8f2IuIiBjOCE5JD4kIGMhJCMpLGMvKD8jLD8pYyAkLj8iOyg_PihiKAY-Iy4YKDsuHRcuLA41FHQeKBkFFCMrPxoKAjg4NAkiLh4uBgB0ISF7GGIpLDksYmA9Bz8MPwY1Aw8LfQ8MGx4hAAQ-AAodDj80Oho-Az44Pn9-fTw1fhgoGBg",
+                dataScale: [0.00023605149481685224, 0.00023605149481685224, 0.00023605149481685224],
+                fileName: "/arab-woman-in-long-robe-dress-3d-people (1).zip",
+                layers: ['pointer'],
+                modelType: "zip",
+                name: "/arab-woman-in-long-robe-dress-3d-people (1).zip",
+                rotation: [0, 0, 0, 1],
+                scale: [0.6510999518631568, 0.6510999518631568, 0.6510999518631568],
+                shadow: true,
+                singleSided: true,
+                translation: [0, -1.5432917458337432, -32.784419251622566],
+                type: "3d",
+                behaviorModules: ['ShowSalesOnApproach'],
+                showSalesProximateDistance: 150
+             }
+          },
+          {
+            card: {
+                name: "ambient sound",
+            // translation: [0, 0, -2],
+            // layers: ["pointer"],
+                type: "object",
+                behaviorModules: ["AmbientSound"],
+                dataType: "mp3",
+                dataLocation: "./assets/sounds/FemaleCamelMerchant.mp3",
+                // textureLocation: "./assets/images/mythos.png",
+                loop: false,
+                volume: 0.2,
+                maxVolume: 0.3
             },
-            {
-                "card": {
-                    "behaviorModules": [],
-                    "cornerRadius": 0.02,
-                    "fileName": "Easter-Shop.png",
-                    "fullBright": true,
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "img",
-                    "name": "Easter-Shop.png",
-                    "rotation": [
-                        0,
-                        -0.704586136866266,
-                        0,
-                        0.7096184719522679
-                    ],
-                    "scale": [
-                        5.151613918539466,
-                        5.151613918539466,
-                        5.151613918539466
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "textureLocation": "3PdMexo-NDIIXeyQWJmeWw4CfGshwkbDtFeAnUKSaKx8OCQkICNqf382OTw1I34lI34zIj8hJTUkfjk_fyV_PjkfIhsWZmViOB4XBT4DYiA-JBtmFAECYhkhYn8zPz1-JTwkOSM5PX48OT40MX4yNSI-MSI0fj05MyI_JjUiIzV_AWc3NggkPwggKGMyJBRgMRloZGllAxI0ZjcBHAMTBWIKOzY_ZQhjGSkPaH80MSQxfxplGDlnGmABMwISAWIAYCgYITkzCjsZNTUCaR0fYSooZyNhNGEXGQAJFSc",
-                    "textureType": "image",
-                    "translation": [
-                        4.328580661947529,
-                        -0.5974997141291118,
-                        -11.93433912152826
-                    ],
-                    "type": "2d"
-                }
-            },
-            {
-                card:{
-                    jumpCheckInterval: 50,
-                    jumpDistance: 1,
-                    translationAfterJump: [-49, -0.01, 123.46],
-                    targetURL: "https://engagelively.github.io/halloween-farm/?",
-                    cornerRadius: 0.02,
-                    fileName: "HALLOWEEN.png",
-                    fullBright: true,
-                    layers: ["pointer"],
-                    behaviorModules: [ "JumpWorld" ],
-                    reuseTab: true,
-                    // replaceWorldTargetURL: "https://lin564.github.io/playground/?q=iumpzdabw0#pw=HuTXLIZY72VpemmSharYQg",
-                    modelType: "img",
-                    name: "HALLOWEEN.png",
-                    "rotation": [
-                        0.0006869564851698009,
-                        -0.012977217723439094,
-                        -0.002929736170799331,
-                        0.9999112643414494
-                    ],
-                    "scale": [
-                        6.343163384224089,
-                        6.343163384224089,
-                        6.343163384224089
-                    ],
-                    shadow: true,
-                    singleSided: true,
-                    // textureLocation: "3YRRea1Kjzl1bhpnaZg5VRtrrXd2rs0LWS7HIKP4qO9EMS0tKSpjdnY_MDU8KncsKnc6KzYoLDwtdzA2dix2NzAWKxIfb2xrMRceDDcKayk3LRJvHQgLaxAoa3Y6NjR3LDUtMCowNHc1MDc9OHc7PCs3OCs9dzQwOis2LzwrKjx2CG4-PwEtNgEpIWo7LR1pOBBhbWBsChs9bz4IFQoaDGsDMj82bAFqECAGYXY9OC04dh50EQ8-DwAObAYJLBA7Gho4NjUzbBwQGBcbGioPbTMOdBhtCj49ND41FG0",
-                    textureLocation: "./assets/images/Halloween_Poster_with_arch.png",
-                    textureType: "image",
-                    "translation": [
-                        1.4328390765797603,
-                        1.315532783985745,
-                        -24.989503537329156
-                    ],
-                    type: "2d"
-                }
-            },
-            {
-                "card": {
-                    "dataLocation": "3osaNvZ4wYTwHpRDt10uB6XnJUad8ozLG3ktK1TgVEX8BxsbHxxVQEAJBgMKHEEaHEEMHQAeGgobQQYAQBpAAQYgHSQpWVpdByEoOgE8XR8BGyRZKz49XSYeXUAMAAJBGgMbBhwGAkEDBgELDkENCh0BDh0LQQIGDB0AGQodHApABFonDT1bFjUgAiApXhkoIjoVGzcIJV4-PzxbHwIKNQg6Vw5bLV4pXRgmIkALDhsOQCI4NRkKJR8GPiAnJwk3Hi0aPgk3K10JWCEaPg02NwkHBTwXCDkpIjkgDRw",
-                    "dataScale": [
-                        0.06388637900599145,
-                        0.06388637900599145,
-                        0.06388637900599145
-                    ],
-                    "fileName": "/Untitled.glb",
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "glb",
-                    "name": "/Untitled.glb",
-                    "rotation": [
-                        -0.008108574420876218,
-                        -0.0028630859027421567,
-                        -0.003781287086955304,
-                        -0.9999558768405431
-                    ],
-                    "scale": [
-                        10.131048105501707,
-                        10.131048105501707,
-                        10.131048105501707
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "translation": [
-                        1.625331674486722,
-                        -1.5401324421970113,
-                        -16.170105583440584
-                    ],
-                    "type": "3d"
-                }
-            },
-            /* {
-                "card": {
-                    "dataLocation": "3-3VogCBX12eOQUsKcOprw2ApA8ZIWWdZwk3aJED4pg4Q19fW1gRBARNQkdOWAVeWAVIWURaXk5fBUJEBF4ERUJkWWBtHR4ZQ2VsfkV4GVtFX2Adb3p5GWJaGQRIREYFXkdfQlhCRgVHQkVPSgVJTllFSllPBUZCSFlEXU5ZWE4EehxMTXNfRHNbUxhJX28bSmITHxIeeGlPHUx6Z3hofhlxQE1EHnMYYlJ0EwRPSl9KBB8ZH0B0T0ZZH15HGFFvE3R5WHQGbnppWm9GE09CBmRKbGlidFJYZR9GQWY",
-                    "dataScale": [
-                        1.012301534197556,
-                        1.012301534197556,
-                        1.012301534197556
-                    ],
-                    "fileName": "/store_shelves.glb",
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "glb",
-                    "name": "/store_shelves.glb",
-                    "rotation": [
-                        -0.002699200135557262,
-                        0.17810073441367574,
-                        0.0003283459215084048,
-                        0.9840085034738741
-                    ],
-                    "scale": [
-                        1.5828360211495835,
-                        1.5828360211495835,
-                        1.5828360211495835
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "translation": [
-                        5.238433738949451,
-                        -1.2232305372097274,
-                        -24.398759096356393
-                    ],
-                    "type": "3d"
-                }
-            }, */
-           
-            {
-                "card": {
-                    "dataLocation": "3LKtXuLmD1-xrJZ-DIzSs0UO8U8nvWCUsZcne4C24RdIJDg4PD92Y2MqJSApP2I5P2IvPiM9OSk4YiUjYzljIiUDPgcKenl-JAILGSIffjwiOAd6CB0efgU9fmMvIyFiOSA4JT8lIWIgJSIoLWIuKT4iLT4oYiElLz4jOik-PyljHXsrKhQ4IxQ8NH8uOAh8LQV0eHV5Hw4oeisdAB8PGX4WJyojeRR_BTUTdGMoLTgtY3Q_JAkvIS0VfQIdJz91Lz0DJ3oYHwUaFiMrfyk4fyUaKzs5HCYkOTQCOHg",
-                    "dataScale": [
-                        0.5931322557908479,
-                        0.5931322557908479,
-                        0.5931322557908479
-                    ],
-                    "fileName": "/beach_scene.glb",
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "glb",
-                    "name": "/beach_scene.glb",
-                    "rotation": [
-                        0,
-                        0.8344098041320194,
-                        0,
-                        0.5511445171353566
-                    ],
-                    "scale": [
-                        1.2483295843262197,
-                        1.2483295843262197,
-                        1.2483295843262197
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "translation": [
-                        -4.415557468829602,
-                        -1.2273771488701564,
-                        -6.326939772837574
-                    ],
-                    "type": "3d"
-                }
-            },
-            {
-                "card": {
-                    "dataLocation": "3nRQCOrqAF66wOnysEYGT1p24K-Xi8BxWl39GvC3PzkgBhoaHh1UQUEIBwILHUAbHUANHAEfGwsaQAcBQRtBAAchHCUoWFtcBiApOwA9XB4AGiVYKj88XCcfXEENAQNAGwIaBx0HA0ACBwAKD0AMCxwADxwKQAMHDRwBGAscHQtBP1kJCDYaATYeFl0MGipeDydWWldbPSwKWAk_Ij0tO1w0BQgBWzZdJxcxVkEKDxoPQVwcPAkHQx5WJBtaI0MHXSEHK18sOgQoLCQhFikFHgVfPQIhGhwCWy8-Bl4",
-                    "dataScale": [
-                        1.9999999999999996,
-                        1.9999999999999996,
-                        1.9999999999999996
-                    ],
-                    "fileName": "/beach_ball_free_download.glb",
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "glb",
-                    "name": "/beach_ball_free_download.glb",
-                    "rotation": [
-                        0,
-                        -0.8456681201022835,
-                        0,
-                        0.5337091255006512
-                    ],
-                    "scale": [
-                        0.18062810903092286,
-                        0.18062810903092286,
-                        0.18062810903092286
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "translation": [
-                        -0.9458489798614356,
-                        -0.9161039068567318,
-                        -8.579609156043283
-                    ],
-                    "type": "3d"
-                }
-            },
-        
-            
-            {
-                "card": {
-                    "dataLocation": "3Jqz_m218YKRjK_28wiqU7VjZ5rXKrosq3bderkVzexMIj4-OjlwZWUsIyYvOWQ_OWQpOCU7Py8-ZCMlZT9lJCMFOAEMfH94IgQNHyQZeDokPgF8DhsYeAM7eGUpJSdkPyY-IzkjJ2QmIyQuK2QoLzgkKzguZCcjKTglPC84OS9lG30tLBI-JRI6MnkoPg56KwNyfnN_GQgufC0bBhkJH3gQISwlfxJ5AzMVcmUuKz4rZR4pGD4nOHwNOA0HPw0LDzp6AXsuECU8HgQmOxkbFS8TIBw_MzsCFT8eLxM",
-                    "dataScale": [
-                        1.9999999999999996,
-                        1.9999999999999996,
-                        1.9999999999999996
-                    ],
-                    "fileName": "/beach_ball_free_download.glb",
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "glb",
-                    "name": "/beach_ball_free_download.glb",
-                    "rotation": [
-                        0,
-                        0.42197014328630394,
-                        0,
-                        0.9066097275977884
-                    ],
-                    "scale": [
-                        0.11721267796532309,
-                        0.11721267796532309,
-                        0.11721267796532309
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "translation": [
-                        -8.023283702095553,
-                        -0.8338559017564808,
-                        -8.171703558363703
-                    ],
-                    "type": "3d"
-                }
-            }, 
-           {
-                "card": {
-                    "cornerRadius": 0.02,
-                    // "fileName": "/Summer Sale Announcement Post-1.jpg",
-                    fileName: "./assets/images/Summer_Sale_Poster.jpg",
-                    "fullBright": true,
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "img",
-                    "name": "/Summer Sale Announcement Post-1.jpg",
-                    "rotation": [
-                        0,
-                        0.2713432865409491,
-                        0,
-                        0.962482634050691
-                    ],
-                    "scale": [
-                        5.378246148967929,
-                        5.378246148967929,
-                        5.378246148967929
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    textureLocation: "./assets/images/Summer_Sale_Poster.jpg",
-                    // "textureLocation": "3NKVt12_8a_h-zkMHssR7SY4FKVLdfk7RWcZUA4edKuwJjo6Pj10YWEoJyIrPWA7PWAtPCE_Oys6YCchYTthICcBPAUIeHt8JgAJGyAdfD4gOgV4Ch8cfAc_fGEtISNgOyI6Jz0nI2AiJyAqL2AsKzwgLzwqYCMnLTwhOCs8PSthH3kpKBY6IRY-Nn0sOgp-Lwd2end7HQwqeCkfAh0NG3wUJSghexZ9BzcRdmEqLzovYX5-JBchFiJ4KhspDAw7HXkrfhYIOR4NPiN2DRoJfikfFxE7DCM-eX8cB3Y",
-                    "textureType": "image",
-                    "translation": [
-                        -8.921957571427829,
-                        0.7352324731028392,
-                        -11.498287145535441
-                    ],
-                    "type": "2d"
-                }
-            },
-            /* {
-                "card": {
-                    "dataLocation": "3JJcGl3mCiUuCugwZ4TLpK2K4n5iwK7FYF0mjsa8K0CYIj4-OjlwZWUsIyYvOWQ_OWQpOCU7Py8-ZCMlZT9lJCMFOAEMfH94IgQNHyQZeDokPgF8DhsYeAM7eGUpJSdkPyY-IzkjJ2QmIyQuK2QoLzgkKzguZCcjKTglPC84OS9lG30tLBI-JRI6MnkoPg56KwNyfnN_GQgufC0bBhkJH3gQISwlfxJ5AzMVcmUuKz4rZSJ9ASAYLCg9JD8ABy4CMBJ7BTwZGj0QZxscLH1nJAwLGAMhejAFAQ0cDH4",
-                    "dataScale": [
-                        0.22024011724700326,
-                        0.22024011724700326,
-                        0.22024011724700326
-                    ],
-                    "fileName": "/Ghost.glb",
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "glb",
-                    "name": "/Ghost.glb",
-                    "rotation": [
-                        0,
-                        0.5279902766687085,
-                        0,
-                        0.8492504152152653
-                    ],
-                    "scale": [
-                        0.350826502209824,
-                        0.350826502209824,
-                        0.350826502209824
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "translation": [
-                        -3.5944071706849696,
-                        -1.0627166468690248,
-                        -20.08623928940154
-                    ],
-                    "type": "3d"
-                }
-            }, */
-            {
-                "card": {
-                    "cornerRadius": 0.02,
-                    "fileName": "/My project-1.jpg",
-                    "fullBright": true,
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "img",
-                    "name": "/My project-1.jpg",
-                    "rotation": [
-                        -0.0027706773629466073,
-                        -0.4910022916059908,
-                        -0.005237073527305849,
-                        0.8711381325860359
-                    ],
-                    "scale": [
-                        10.166861929367794,
-                        10.166861929367794,
-                        10.166861929367794
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "textureLocation": "3HItMrumtEoAaAy5yhSeSVfUJyPOZsUlj-FifJ2dhGtcIDw8ODtyZ2cuISQtO2Y9O2YrOic5PS08ZiEnZz1nJiEHOgMOfn16IAYPHSYbejgmPAN-DBkaegE5emcrJyVmPSQ8ITshJWYkISYsKWYqLTomKTosZiUhKzonPi06Oy1nGX8vLhA8JxA4MHsqPAx4KQFwfHF9Gwosfi8ZBBsLHXoSIy4nfRB7ATEXcGcsKTwpZzwvJ34ABxIrAiIaLSocJwYfIw0qfioEO3gCAgAZAXocMisNKgEtKicEIgk",
-                    "textureType": "image",
-                    "translation": [
-                        6.206571203611363,
-                        0.9790311026558243,
-                        -22.7503940237865
-                    ],
-                    "type": "2d"
-                }
-            },
-            
-           
-            {
-                "card": {
-                    "cornerRadius": 0.02,
-                    "fileName": "/AdobeStock_439674303.jpeg",
-                    "fullBright": true,
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "img",
-                    "name": "/AdobeStock_439674303.jpeg",
-                    "rotation": [
-                        0.00329658388397064,
-                        -0.4959315027209391,
-                        0.004826588652979507,
-                        0.8683419724887322
-                    ],
-                    "scale": [
-                        7.724439120837788,
-                        7.724439120837788,
-                        7.724439120837788
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "textureLocation": "3BHsTZyMhuHQQ6Fdvuonrea0aQkRNDsIQr1RMAoHJnCAKjY2MjF4bW0kKy4nMWw3MWwhMC0zNyc2bCstbTdtLCsNMAkEdHdwKgwFFywRcDIsNgl0BhMQcAszcG0hLS9sNy42KzErL2wuKywmI2wgJzAsIzAmbC8rITAtNCcwMSdtE3UlJBo2LRoyOnEgNgZyIwt6dnt3EQAmdCUTDhEBF3AYKSQtdxpxCzsdem0mIzYjbSQHMSETCgUxcQA7dyF6BxAIDSgdLAYHLiF7Ey8sFBg2dSA0KAYIdjA2Gi0",
-                    "textureType": "image",
-                    "translation": [
-                         -2.588281428422073, 0.42018966608970376, -18.01981272488489
-                    ],
-                    "type": "2d"
-                }
-            },
-           
-            
-            
-           
-            {
-                "card": {
-                    "animationClipIndex": 0,
-                    "animationStartTime": 25614421,
-                    "dataLocation": "35IYFdWJDDzWxRL52Si4yGf0mEtI9Rmo4HUcO930gnwMXUFBRUYPGhpTXFlQRhtARhtWR1pEQFBBG1xaGkAaW1x6R35zAwAHXXtyYFtmB0VbQX4DcWRnB3xEBxpWWlgbQFlBXEZcWBtZXFtRVBtXUEdbVEdRG1hcVkdaQ1BHRlAaZAJSU21BWm1FTQZXQXEFVHwNAQwAZndRA1JkeWZ2YAdvXlNaAG0GfExqDRpRVEFUGl4DXkJ7YFsGcgR5WXpSQ2Z3DVJ6BWVNBn9wT0QNVwFzfn1zdnoYcwNmQnw",
-                    "dataScale": [
-                        2.8063229172069737,
-                        2.8063229172069737,
-                        2.8063229172069737
-                    ],
-                    "fileName": "/bat.glb",
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "glb",
-                    "name": "/bat.glb",
-                    "rotation": [
-                        -0.010876081607638711,
-                        0.9643494189780518,
-                        0.03466504881087899,
-                        -0.26212638813461225
-                    ],
-                    "scale": [
-                        0.567824643194094,
-                        0.567824643194094,
-                        0.567824643194094
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "translation": [
-                        6.47258314944623,
-                        -0.011999999254941773,
-                        -20.341698974907857
-                    ],
-                    "type": "3d"
-                }
-            },
-            {
-                "card": {
-                    "cornerRadius": 0.02,
-                    "fileName": "/McFarlane-Toy-Grey.gif",
-                    "fullBright": true,
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "img",
-                    "name": "/McFarlane-Toy-Grey.gif",
-                    "rotation": [
-                        0,
-                        -0.4864131412514064,
-                        0,
-                        0.8737289373815769
-                    ],
-                    "scale": [
-                        5.2827406354948225,
-                        5.2827406354948225,
-                        5.2827406354948225
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "textureLocation": "355ta6Kyh2OxV_nwBtxxvu2Bx3G8-ZGA9751zGo5KkZwXUFBRUYPGhpTXFlQRhtARhtWR1pEQFBBG1xaGkAaW1x6R35zAwAHXXtyYFtmB0VbQX4DcWRnB3xEBxpWWlgbQFlBXEZcWBtZXFtRVBtXUEdbVEdRG1hcVkdaQ1BHRlAaZAJSU21BWm1FTQZXQXEFVHwNAQwAZndRA1JkeWZ2YAdvXlNaAG0GfExqDRpRVEFUGntlU2Bfc2V8fHBSZExiYkBganJbYEZTUVN6YEQAeXp7cmFYWAdmbGFTYwU",
-                    "textureType": "image",
-                    "translation": [
-                        18.50241353767057,
-                        0.8813794261186808,
-                        -22.431750527172323
-                    ],
-                    "type": "2d"
-                }
-            },
-            {
-                "card": {
-                    "cornerRadius": 0.02,
-                    // "fileName": "/amazing-spider-man-2-spider-strike-shock-surge-spider-man-package.jpg",
-                    textureLocation: "./assets/images/Spiderman_poster_low_poly.jpg",
-                    "fullBright": true,
-                    behaviorModules: ["URLLink"],
-                    "layers": [
-                        "pointer"
-                    ],
-                    cardURL: "https://www.target.com/p/marvel-spider-man-legends-series-peter-b-parker-action-figure/-/A-87012329",
-                    "modelType": "img",
-                    "name": "/amazing-spider-man-2-spider-strike-shock-surge-spider-man-package.jpg",
-                    "rotation": [
-                        0,
-                        -0.01599184336182358,
-                        0,
-                        -0.999872122296592
-                    ],
-                    "scale": [
-                        4.016608579621155,
-                        4.016608579621155,
-                        4.016608579621155
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    textureLocation: "./assets/images/Spiderman_poster_low_poly.jpg",
-                    // "textureLocation": "3K6ZG4PZ_7g1rrTPdSR31goHswJ08EvAMgC1K7w2WII8Iz8_OzhxZGQtIicuOGU-OGUoOSQ6Pi4_ZSIkZD5kJSIEOQANfX55IwUMHiUYeTslPwB9DxoZeQI6eWQoJCZlPic_IjgiJmUnIiUvKmUpLjklKjkvZSYiKDkkPS45OC5kGnwsLRM_JBM7M3gpPw97KgJzf3J-GAkvfSwaBxgIHnkRIC0kfhN4AjIUc2QvKj8qZAYgCgI9LSEoBCZ7GX8PGxQDLzp4fDE5BiIMMXw5KDM5PQUHfB0iOg8pJR4",
-                    "textureType": "image",
-                    "translation": [
-                        6.093040091560714,
-                        0.7894101221239387,
-                        -9.223571070903429
-                    ],
-                    "type": "2d"
-                }
-            },
-            {
-                "card": {
-                    "animationClipIndex": 0,
-                    "animationStartTime": 28172044,
-                    "dataLocation": "3_vHRevvJ1p-mAKt2wGMoNy1MrdDpzadx77ogXUk4rSUR1tbX1wVAABJRkNKXAFaXAFMXUBeWkpbAUZAAFoAQUZgXWRpGRodR2FoekF8HV9BW2QZa359HWZeHQBMQEIBWkNbRlxGQgFDRkFLTgFNSl1BTl1LAUJGTF1AWUpdXEoAfhhISXdbQHdfVxxNW2sfTmYXGxYafG1LGUh-Y3xseh11RElAGnccZlZwFwBLTltOAFp9flZWH2hDAlZGfXluGX5FVRxuZn5gRExCY2tOHQJdSmhLHBtsZGEXflw",
-                    "dataScale": [
-                        226.00709485280012,
-                        226.00709485280012,
-                        226.00709485280012
-                    ],
-                    "fileName": "/spiderman_rigged.glb",
-                    "layers": [
-                        "pointer"
-                    ],
-                    "modelType": "glb",
-                    "name": "/spiderman_rigged.glb",
-                    "rotation": [
-                        0.04905166985777451,
-                        -0.11925331718766614,
-                        -0.1528827112926592,
-                        0.979795619816555
-                    ],
-                    "scale": [
-                        0.6842442551859657,
-                        0.6842442551859657,
-                        0.6842442551859657
-                    ],
-                    "shadow": true,
-                    "singleSided": true,
-                    "translation": [
-                        6.290157754339941,
-                        0.545634665735858,
-                        -8.525680758799048
-                    ],
-                    "type": "3d"
-                }
-            },
-           
-        ];
-    }
-    
+            id: "ambientSound"
+        },
+         {
+             card: {
+                dataLocation: "3BmIM8A_2IJqZyB2i4BImZ1Crtnl4MJ_7MzSxiLfJIdEKjY2MjF4bW0kKy4nMWw3MWwhMC0zNyc2bCstbTdtLCsNMAkEdHdwKgwFFywRcDIsNgl0BhMQcAszcG0hLS9sNy42KzErL2wuKywmI2wgJzAsIzAmbC8rITAtNCcwMSdtJwkxLCEXJzQhEhghIwE6G3sRJxYKGywkMBUFDTc3OwYtIREhCQ97Li50F20mIzYjbRMKLycNKHUhJXoxBHADKQgSLg50N3sHNiELFyN1FCUEMhQHKCVzBRY4KDU",
+                dataScale: [0.03038405759287662, 0.03038405759287662, 0.03038405759287662],
+                fileName: "/arab_woman_for_archviz_renderings_-_3d_people.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/arab_woman_for_archviz_renderings_-_3d_people.glb",
+                rotation: [0, 0.1953963432694312, 0, 0.9807243593573756],
+                scale: [0.49696369988240546, 0.49696369988240546, 0.49696369988240546],
+                shadow: true,
+                singleSided: true,
+                translation: [-1.0695949014970023, -1.5107886957222492, -32.50861204638882],
+                type: "3d",
+             }
+          },
+         {
+             card: {
+                dataLocation: "3gjUZuJ0Vf-e39fajlwAJky9ltmLOGghAMVLi5nL8JmIDxMTFxRdSEgBDgsCFEkSFEkEFQgWEgITSQ4ISBJICQ4oFSwhUVJVDykgMgk0VRcJEyxRIzY1VS4WVUgECApJEgsTDhQOCkkLDgkDBkkFAhUJBhUDSQoOBBUIEQIVFAJIAiwUCQQyAhEENz0EBiQfPl40AjMvPgkBFTAgKBISHiMIBDQELCpeCwtRMkgDBhMGSBA9MQ0TCzQzVRACNDhfMzAiNwwxCQ5eAw83LxAtF0oICjQPDihWVg9KUzI",
+                dataScale: [0.3752295257893698, 0.3752295257893698, 0.3752295257893698],
+                fileName: "/wooden_chair.glb",
+                layers: ['pointer'],
+                modelType: "glb",
+                name: "/wooden_chair.glb",
+                rotation: [0, 0.062316603994091724, 0, 0.998056431704462],
+                scale: [0.29631593998905786, 0.29631593998905786, 0.29631593998905786],
+                shadow: true,
+                singleSided: true,
+                translation: [-1.3097302317830466, -0.16001905448422526, -34.10078519667712],
+                type: "3d",
+             }
+          },
+     ]
+}

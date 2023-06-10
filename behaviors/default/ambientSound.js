@@ -15,23 +15,27 @@ class AmbientSoundPawn {
         this.volume = this.actor._cardData.volume || 0.25;
         this.maxVolume = this.actor._cardData.maxVolume || 0.5;
         this.scaleWind = 1;
-        this.playing = true;
+        this.playing = false;
 
         console.log(this.volume, this.maxVolume)
-        this.subscribe("global", "setWind", this.setWind);
-        this.subscribe("global", "scaleWind", this.setScaleWind);
-        this.subscribe("global", "startMusic", this.stop);
-        this.subscribe("global", "stopMusic", this.play)
+        /* this.subscribe("global", "setWind", this.setWind);
+        this.subscribe("global", "scaleWind", this.setScaleWind); */
+        this.subscribe("global", "startMusic", this.play);
+        this.subscribe("global", "stopMusic", this.stop)
         console.log("Subscribing to (global, startMusic)")
         console.log("Subscribing to (global, stopMusic)")
-        this.subscribe("menu", "startStopWind", this.startStopWind);
-        this.addEventListener("pointerDown", "trigger");
+        /* this.subscribe("menu", "startStopWind", this.startStopWind);
+        this.addEventListener("pointerDown", "trigger"); */
+        this.audio = new Audio(this.file);
+        this.audio.loop = this.loop;
+        this.audio.volume = this.volume;;
+        this.playing = false;
      
         
 
         // this.loadSplashScreen();
-        this.handler = () => this.start();
-        document.addEventListener("click", this.handler);
+        // this.handler = () => this.start();
+        // document.addEventListener("click", this.handler);
     }
 
     loadSplashScreen(){
@@ -88,15 +92,25 @@ class AmbientSoundPawn {
     }
 
     play(){
-        
-        if(this.audio)this.audio.play();
-        this.playing = true;
+        console.log(`Ambient Sound play() called, this.playing = ${this.playing}`)
+        if (this.playing) {
+            return;
+        }
+        if(this.audio){
+            this.audio.play()
+            this.playing = true;
+            console.log(`Ambient Sound started playing, this.playing = ${this.playing}`)
+        }
     }
 
     stop(){
-       
-        if(this.audio)this.audio.pause();
-        this.playing = false;
+        console.log(`Ambient Sound stop() called, this.playing = ${this.playing}`)
+        if(this.audio){
+            this.audio.pause();
+            this.playing = false;
+            console.log(`Ambient Sound stopped playing, this.playing = ${this.playing}`)
+        }
+        
     }
 
 
