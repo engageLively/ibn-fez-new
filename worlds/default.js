@@ -3,13 +3,24 @@
 // info@croquet.io
 
 export function init(Constants) {
+    
     Constants.AvatarNames = [
-        "newwhite", "madhatter", "marchhare", "queenofhearts", "cheshirecat", "alice"
-    ];
-
+      "newwhite", "madhatter", "marchhare", "queenofhearts", "cheshirecat", "alice"
+   ].map(name => ({
+      type: "3d",
+      name: name,
+      modelType: "glb",
+      avatarType: "wonderland",
+      dataLocation: `./assets/avatars/${name}.zip`,
+      dataRotation: [0, Math.PI, 0],
+      dataScale: [0.3, 0.3, 0.3],
+      xBounds: [-20, 20],
+      zBounds: [-30, 2],
+      behaviorModules: ["FezWalker"]
+    }));
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "ambientSound.js", "csmLights.js", "drawingCanvas.js", "showSalesOnApproach.js", 'text3D.js'
+        "ambientSound.js", "csmLights.js", "drawingCanvas.js", "fezWalker.js", "showSalesOnApproach.js", 'text3D.js'
     ];
 
     const frameColor = 0x888888;
