@@ -12,6 +12,10 @@ class ShowSalesOnApproach {
         
         this.visited = [];
     }
+
+    get avatarKeys() {
+        return ['camel', 'saddle', 'guide', 'water skins', 'food', 'islamic book', 'glass bead', 'spices', 'sword']
+    }
     
 
     setup() {
@@ -27,8 +31,9 @@ class ShowSalesOnApproach {
         ]
         this.showing = false;
         this.avatarValue = {
-            camel: 0, saddle: 0, blanket: 0, 'water skins': 0, food: 0, 'islamic book': 0, 'glass beads': 0, spices: 0, swords: 0, shells:150
+            shells:150
         }
+        this.avatarKeys.forEach(key => this.avatarValue[key] = 0)
         this.subscribe("global", "buy", "purchase")
 
         this.future(1000).step();
@@ -107,13 +112,13 @@ class ShowSalesOnApproach {
         }
         this.popupCard = this.createCard({
             name: "avatarCard",
-            translation: [5.22658000718942, -0.3207103775912594, -33.55194820630596],
+            translation: [2.123651261474113, -0.3207103775912594, -33.55194820630596],
             behaviorModules: ["Canvas", "Buy"],
             rotation: [0, 0, 0, 1],
             scale: [3, 3, 3],
             type: "2d",
             textureType: "canvas",
-            textureWidth: 820,
+            textureWidth: 410,
             textureHeight: 644,
             depth: 0.05,
             cornerRadius: 0.1,
@@ -143,11 +148,12 @@ class ShowSalesOnApproach {
     }
 
     updateDisplay() {
-        const keys = Object.keys(this.avatarValue)
+        
         // this.cardsByName.avatarCard._cardData.text = keys.map(key =>  this._makeLine(this.avatarValue, key)).join('\n')
         this.publish("global", "drawTextActor", {
             name: "avatarCard",
-            lines: keys.map(key =>  this._makeLine(this.avatarValue, key))
+            lines: this.avatarKeys.map(key => /* this._makeLine(this.avatarValue, key) */ this.avatarValue[key]),
+            shells: this.avatarValue.shells
         })
        // this.say('updateShape')
 

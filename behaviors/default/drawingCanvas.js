@@ -14,12 +14,12 @@ class CanvasActor{
     }
 
     drawText(data) {
-        let {name, lines} = data;
+        let {name, lines, shells} = data;
         if (name != this._name) {
             // not for us, return
             return
         }
-        this.say("drawTextPawn", lines)
+        this.say("drawTextPawn", {lines: lines, shells: shells})
     }
 
     step() {
@@ -47,8 +47,8 @@ class CanvasPawn {
         this.imageLoaded = false;
         this.linesWaiting = null;
 
-        this.image = new Image(820, 644)
-        this.image.src = 'https://matt.engageLively.com/assets/ITF/papyrus.jpg'
+        this.image = new Image(412, 604)
+        this.image.src = 'https://matt.engagelively.com/assets/ITF/scroll_no_totals.png'
         this.image.crossOrigin = 'Anonymous'
         this.image.onload =  _ => {
             // flag that the image has been loaded, and if ws have lines
@@ -83,6 +83,7 @@ class CanvasPawn {
     }
 
     drawText(lines) {
+        
         if (this.imageLoaded){
             this.drawBackground();
             this.future(20).writeText(lines); // make sure we write the text on top of the background
@@ -91,14 +92,16 @@ class CanvasPawn {
         }
     }
 
-    writeText(lines) {
+    writeText(data) {
+        let {lines, shells} = data
         let ctx = this.canvas.getContext("2d");
-        ctx.font = "40px Arial";
-        ctx.fillStyle = 'black'
-        let lineHeight = 45, firstLine = 125;
+        ctx.font = "bold 20px Garamond";
+        ctx.fillStyle = 'brown'
+        let lineHeight = 48, firstLine = 150;
         lines.forEach((line, i) => {
             ctx.fillText(line, 80,  firstLine + i * lineHeight)
         })
+        ctx.fillText(shells, 310, 110)
         this.texture.needsUpdate = true;
 
     }
