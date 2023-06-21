@@ -110,20 +110,35 @@ class ShowSalesOnApproach {
         if (this.showing) {
             return; // nothing to do
         }
-        this.popupCard = this.createCard({
-            name: "avatarCard",
-            translation: [-19.123651261474112, -0.04941893210761106, -72.84095522150123],
-            behaviorModules: ["Canvas", "Buy"],
-            rotation: [0, 0, 0, 1],
-            scale: [3, 3, 3],
-            type: "2d",
-            textureType: "canvas",
-            textureWidth: 410,
-            textureHeight: 644,
-            depth: 0.05,
-            cornerRadius: 0.1,
+        this.popupCards = [
+            this.createCard({
+                name: "avatarCard",
+                translation: [-19.123651261474112, -0.04941893210761106, -72.84095522150123],
+                behaviorModules: ["Canvas"],
+                rotation: [0, 0, 0, 1],
+                scale: [3, 3, 3],
+                type: "2d",
+                textureType: "canvas",
+                textureWidth: 410,
+                textureHeight: 644,
+                depth: 0.05,
+                cornerRadius: 0.1,
 
-        })
+            }),
+            this.createCard({
+                name: "camelCard",
+                translation: [-21.68224079931403, -0.5934313462079328, -72.84095522150123],
+                behaviorModules: [ "Buy"],
+                rotation: [0, 0, 0, 1],
+                scale: [3, 3, 3],
+                type: "2d",
+                textureType: "image",
+                textureLocation: "https://matt.engageLively.com/assets/ITF/buy_a_camel.png",
+                depth: 0.05,
+                cornerRadius: 0.1,
+
+            })
+        ]
 
         
         this.showing = true;
@@ -162,9 +177,8 @@ class ShowSalesOnApproach {
     removeCards() {
         if (this.showing) {
             this.showing = false;
-            if (this.popupCard) {
-                this.popupCard.destroy()
-                this.popupCard = null;
+            if (this.popupCards) {
+                this.popupCards.forEach(card => card.destroy())
             }
         }
     }
