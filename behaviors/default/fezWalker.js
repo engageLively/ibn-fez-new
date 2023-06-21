@@ -14,6 +14,7 @@ class FezWalkerPawn {
     }
 
     checkBounds(vq, time, _delta) {
+        return [vq, false]
         let v = [
             Math.max(this.xBounds[0], Math.min(vq.v[0], this.xBounds[1])),
             vq.v[1],

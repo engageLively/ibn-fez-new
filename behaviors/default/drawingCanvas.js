@@ -129,7 +129,7 @@ class CanvasPawn {
 
     drawBackground() {
         const ctx = this.canvas.getContext("2d");
-        this.clear('white')
+        this.clear('brown')
        
         ctx.drawImage(this.image, 0, 0);
         this.texture.needsUpdate = true;

@@ -1,5 +1,11 @@
 class SynchronousCardLoaderPawn {
     setup() {
+        this.background = new Image()
+        this.background.src = 'https://matt.engagelively.com/assets/ITF/Intro-to-Fez-Background.png';
+        this.background.crossOrigin = 'Anonymous'
+        this.background.onload = _ => {
+            console.log('background loaded')
+        }
         this.subscribe(this.sessionId, "synchronousLoadCardsStarted", "synchronousLoadCardsStarted");
         this.subscribe(this.sessionId, "allSynchronousCardsLoaded", "allSynchronousCardsLoaded");
 
@@ -24,6 +30,7 @@ class SynchronousCardLoaderPawn {
         initialCoverDiv.style.opacity = "0.95";
         window.initialCoverDiv = initialCoverDiv;
         document.body.appendChild(initialCoverDiv);
+       
         this.canvas = document.createElement('canvas');
         this.canvas.style.width="100%"
         this.canvas.style.height="100%";
@@ -31,6 +38,7 @@ class SynchronousCardLoaderPawn {
         initialCoverDiv.appendChild(this.canvas)
         this.angle = 0;
         this.future(20).canvasStep()
+       
 
        /*  this.spinner = document.createElement("video");
         this.spinner.id = "croquet_loader";
@@ -110,6 +118,11 @@ class SynchronousCardLoaderPawn {
             this._drawSpiral(this.angle)
             this.angle += 0.1; // rad, about 5 degrees
             this.future(20).canvasStep();
+            /* const context = this.canvas.getContext('2d')
+            context.drawImage(this.background, 0, 0)
+            */
+    
+
         }
     }
 

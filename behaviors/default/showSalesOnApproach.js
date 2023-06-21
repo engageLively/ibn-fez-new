@@ -52,7 +52,7 @@ class ShowSalesOnApproach {
     _loadFields() {
         // set up the configuration from the card
         const fields = [
-            {name: 'showSalesProximateDistance', defaultValue: 10},
+            {name: 'showSalesProximateDistance', defaultValue: 3},
             {name: 'showSalesCheckInterval', defaultValue: 20}
         ]
 
@@ -112,7 +112,7 @@ class ShowSalesOnApproach {
         }
         this.popupCard = this.createCard({
             name: "avatarCard",
-            translation: [2.123651261474113, -0.3207103775912594, -33.55194820630596],
+            translation: [-19.123651261474112, -0.04941893210761106, -72.84095522150123],
             behaviorModules: ["Canvas", "Buy"],
             rotation: [0, 0, 0, 1],
             scale: [3, 3, 3],

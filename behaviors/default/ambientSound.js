@@ -92,23 +92,23 @@ class AmbientSoundPawn {
     }
 
     play(){
-        console.log(`Ambient Sound play() called, this.playing = ${this.playing}`)
+        // console.log(`Ambient Sound play() called, this.playing = ${this.playing}`)
         if (this.playing) {
             return;
         }
         if(this.audio){
             this.audio.play()
             this.playing = true;
-            console.log(`Ambient Sound started playing, this.playing = ${this.playing}`)
+            // console.log(`Ambient Sound started playing, this.playing = ${this.playing}`)
         }
     }
 
     stop(){
-        console.log(`Ambient Sound stop() called, this.playing = ${this.playing}`)
+        // console.log(`Ambient Sound stop() called, this.playing = ${this.playing}`)
         if(this.audio){
             this.audio.pause();
             this.playing = false;
-            console.log(`Ambient Sound stopped playing, this.playing = ${this.playing}`)
+            // console.log(`Ambient Sound stopped playing, this.playing = ${this.playing}`)
         }
         
     }
