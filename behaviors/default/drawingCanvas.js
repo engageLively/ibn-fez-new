@@ -93,9 +93,9 @@ class CanvasPawn {
 
     writeText(lines) {
         let ctx = this.canvas.getContext("2d");
-        ctx.font = "60px Arial";
+        ctx.font = "40px Arial";
         ctx.fillStyle = 'black'
-        let lineHeight = 70, firstLine = 150;
+        let lineHeight = 45, firstLine = 125;
         lines.forEach((line, i) => {
             ctx.fillText(line, 80,  firstLine + i * lineHeight)
         })

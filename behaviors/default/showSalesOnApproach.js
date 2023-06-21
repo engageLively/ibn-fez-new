@@ -21,13 +21,13 @@ class ShowSalesOnApproach {
         this._dumpFields();
         this.salesCard = null;
         this.goods = [
-            {item: "camel", quantity: 3, price: 250},
-            {item: "saddle", quantity: 20, price: 50},
-            {item: "blanket", quantity: 50, price: 10}
+            {item: "camel", quantity: 3, price: 20},
+            {item: "saddle", quantity: 20, price: 5},
+            {item: "guide", quantity: 50, price: 12}
         ]
         this.showing = false;
         this.avatarValue = {
-            camel: 0, saddle: 0, blanket: 0, shells:500
+            camel: 0, saddle: 0, blanket: 0, 'water skins': 0, food: 0, 'islamic book': 0, 'glass beads': 0, spices: 0, swords: 0, shells:150
         }
         this.subscribe("global", "buy", "purchase")
 
@@ -36,10 +36,10 @@ class ShowSalesOnApproach {
     }
 
     purchase(name) {
-        const purchased = this.goods.filter(good => good.item == name)[0]
+        const purchased = this.goods[0]
         this.goodsIndex = this.goods.indexOf(purchased)
         purchased.quantity--;
-        this.avatarValue[name]++;
+        this.avatarValue.camel++;
         this.avatarValue.shells -= purchased.price
         this.updateDisplay()
     }
@@ -105,64 +105,23 @@ class ShowSalesOnApproach {
         if (this.showing) {
             return; // nothing to do
         }
+        this.popupCard = this.createCard({
+            name: "avatarCard",
+            translation: [5.22658000718942, -0.3207103775912594, -33.55194820630596],
+            behaviorModules: ["Canvas", "Buy"],
+            rotation: [0, 0, 0, 1],
+            scale: [3, 3, 3],
+            type: "2d",
+            textureType: "canvas",
+            textureWidth: 820,
+            textureHeight: 644,
+            depth: 0.05,
+            cornerRadius: 0.1,
 
-        const displayCards = [
-            {
-                name: "camel",
-                translation: [2.22658000718942, 4.3207103775912594, -33.55194820630596],
-                behaviorModules: ["Canvas", "Buy"],
-                inventory: 'camel'
-            },
-            {
-                name: "saddle",
-                translation: [2.22658000718942, 2.3207103775912594, -33.55194820630596],
-                behaviorModules: ["Canvas", "Buy"],
-                inventory: 'saddle',
-
-            },
-            {
-                name: "blanket",
-                translation: [2.22658000718942, -0.3207103775912594, -33.55194820630596],
-                behaviorModules: ["Canvas", "Buy"],
-                inventory: 'blanket',
-
-            },
-            {
-                name: "avatarCard",
-                translation: [5.22658000718942, -0.3207103775912594, -33.55194820630596],
-                behaviorModules: ["Canvas"]
-            }
-        ]
-
-        const salesCards = displayCards.map(card => {
-            return {
-                name: card.name,
-                translation: card.translation,
-                behaviorModules: card.behaviorModules,
-                rotation: [0, 0, 0, 1],
-                scale: [3, 3, 3],
-                type: "2d",
-                textureType: "canvas",
-                textureWidth: 820,
-                textureHeight: 644,
-                /* type: "2d",
-                textureType: "image",
-                textureLocation: "./assets/images/papyrus.jpg",
-                fontSize: 30,
-                width: 1,
-                height: 0.75, */
-                // color: 0xffffff,
-                depth: 0.05,
-                cornerRadius: 0.1,
-            }
         })
+
         
         this.showing = true;
-        this.popupCards = salesCards.map(card => this.createCard(card))
-        this.cardsByName = {}
-        this.popupCards.forEach(card => {
-            this.cardsByName[card.name] = card
-        })
         this.future(100).updateDisplay();
 
     }
@@ -184,11 +143,7 @@ class ShowSalesOnApproach {
     }
 
     updateDisplay() {
-        this.goods.forEach(good => {
-            // this.cardsByName[good.item]._cardData.text=this._convertToLines(good).join('\n')
-            this.publish("global", "drawTextActor", {name: good.item, lines: this._convertToLines(good)});
-        })
-        const keys = ['camel', 'saddle', 'blanket', 'shells']
+        const keys = Object.keys(this.avatarValue)
         // this.cardsByName.avatarCard._cardData.text = keys.map(key =>  this._makeLine(this.avatarValue, key)).join('\n')
         this.publish("global", "drawTextActor", {
             name: "avatarCard",
@@ -201,9 +156,9 @@ class ShowSalesOnApproach {
     removeCards() {
         if (this.showing) {
             this.showing = false;
-            if (this.popupCards) {
-                this.popupCards.forEach(card => card.destroy())
-                this.popupCards = [];
+            if (this.popupCard) {
+                this.popupCard.destroy()
+                this.popupCard = null;
             }
         }
     }
