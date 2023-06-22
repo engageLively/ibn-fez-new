@@ -203,7 +203,7 @@ export function init(Constants) {
           ],
           "fileName": "/little_fella.glb",
           "layers": [
-              "pointer", "walk"
+              "pointer"
           ],
           "modelType": "glb",
           "name": "/little_fella.glb",
@@ -366,7 +366,7 @@ export function init(Constants) {
           "fileName": "/Wall-Image-10.jpg",
           "fullBright": true,
           "layers": [
-              "pointer",
+              "pointer", "walk",
               "walk"
           ],
           "modelType": "img",
@@ -401,7 +401,7 @@ export function init(Constants) {
           "fileName": "/Wall-Image-11.jpg",
           "fullBright": true,
           "layers": [
-              "pointer",
+              "pointer", "walk",
               "walk"
           ],
           "modelType": "img",
@@ -536,7 +536,7 @@ export function init(Constants) {
           "fileName": "/Screenshot 2023-06-19 at 1.47.53 PM (1).png",
           "fullBright": true,
           "layers": [
-              "pointer", "walk"
+              "pointer"
           ],
           "modelType": "img",
           "name": "/Screenshot 2023-06-19 at 1.47.53 PM (1).png",
@@ -788,7 +788,7 @@ export function init(Constants) {
           ],
           "fileName": "/Untitled.glb",
           "layers": [
-              "pointer", "walk"
+              "pointer"
           ],
           "modelType": "glb",
           "name": "/Untitled.glb",
