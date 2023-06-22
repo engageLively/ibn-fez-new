@@ -47,8 +47,8 @@ class CanvasPawn {
         this.imageLoaded = false;
         this.linesWaiting = null;
 
-        this.image = new Image(412, 604)
-        this.image.src = 'https://matt.engagelively.com/assets/ITF/scroll_no_totals.png'
+        this.image = new Image(503, 697)
+        this.image.src = 'https://matt.engagelively.com/assets/ITF/click-to-buy-new.png'
         this.image.crossOrigin = 'Anonymous'
         this.image.onload =  _ => {
             // flag that the image has been loaded, and if ws have lines
@@ -97,11 +97,11 @@ class CanvasPawn {
         let ctx = this.canvas.getContext("2d");
         ctx.font = "bold 20px Garamond";
         ctx.fillStyle = 'brown'
-        let lineHeight = 48, firstLine = 150;
+        let lineHeight = 60, firstLine = 140;
         lines.forEach((line, i) => {
-            ctx.fillText(line, 80,  firstLine + i * lineHeight)
+            ctx.fillText(line, 100,  firstLine + i * lineHeight)
         })
-        ctx.fillText(shells, 310, 110)
+        ctx.fillText(shells, 375, 105)
         this.texture.needsUpdate = true;
 
     }

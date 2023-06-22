@@ -15,7 +15,7 @@ class SynchronousCardLoaderPawn {
         }
 
         this.coverInPlace = true;
-        this.future(80000).allSynchronousCardsLoaded();
+        this.future(40000).allSynchronousCardsLoaded();
         /* window.addEventListener(
             "message",
             (event) => {

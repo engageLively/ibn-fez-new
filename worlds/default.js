@@ -2021,18 +2021,14 @@ export function init(Constants) {
               0.999852630012311
           ],
           "scale": [
-              11.846674345644896,
-              11.846674345644896,
-              11.846674345644896
+              20, 20, 20
           ],
           "shadow": true,
           "singleSided": true,
           "textureLocation": "3D8uoKbttvJm1pLoDoLg37kFzPkmj-lnE0kH-675-MmULDAwNDd-a2siLSghN2oxN2onNis1MSEwai0razFrKi0LNg8CcnF2LAoDESoXdjQqMA9yABUWdg01dmsnKylqMSgwLTctKWooLSogJWomITYqJTYgaiktJzYrMiE2NyFrEQYqDA0vJXIjKA11AAYuPBQAFzB3EQFyFmk-IAgHAhZ9JgE9NAYAEzYHfGsgJTAlawc-KAFwLHcBKwd2fSUwDw0sNyU1CXdwPgoKcAoSJT4JPAgOciI9LDUNaR0",
           "textureType": "image",
           "translation": [
-              1.8412525696837054,
-              3.923581244655261,
-              -166.50288965466103
+            1.8412525696837054, 8.241627523531172, 26.256841764963156
           ],
           "type": "2d"
       },
