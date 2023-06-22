@@ -78,12 +78,14 @@ export function init(Constants) {
                 name: "ambient sound",
                 type: "object",
                 behaviorModules: ["AmbientSound"],
-                dataType: "mp3",
-                dataLocation: "./assets/sounds/FemaleCamelMerchant.mp3",
+                // dataType: "mp3",
+                // dataLocation: "./assets/sounds/FemaleCamelMerchant.mp3",
                 // textureLocation: "./assets/images/mythos.png",
+                dataType: "wav",
+                dataLocation: "./assets/sounds/female_camel_merchant_v2.wav",
                 loop: false,
-                volume: 0.2,
-                maxVolume: 0.3
+                volume: 0.6,
+                maxVolume: 0.8
             },
             id: "ambientSound"
          },
@@ -97,7 +99,7 @@ export function init(Constants) {
                 ],
                 "fileName": "/Empty Market MAYBE FIXED.glb",
                 "layers": [
-                    "pointer"
+                    "pointer", "walk"
                 ],
                 "modelType": "glb",
                 "name": "/Empty Market MAYBE FIXED.glb",
@@ -128,7 +130,7 @@ export function init(Constants) {
              "fileName": "/Nyasa_medieval_moroccan_bazaar_0c4dd814-f472-46db-bad7-3f1d073d44e8.png",
              "fullBright": true,
              "layers": [
-                 "pointer"
+                 "pointer", "walk"
              ],
              "modelType": "img",
              "name": "/Nyasa_medieval_moroccan_bazaar_0c4dd814-f472-46db-bad7-3f1d073d44e8.png",
@@ -163,7 +165,7 @@ export function init(Constants) {
              "fileName": "/Wall-Image-3.jpg",
              "fullBright": true,
              "layers": [
-                 "pointer"
+                 "pointer", "walk"
              ],
              "modelType": "img",
              "name": "/Wall-Image-3.jpg",
@@ -201,7 +203,7 @@ export function init(Constants) {
           ],
           "fileName": "/little_fella.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/little_fella.glb",
@@ -228,7 +230,7 @@ export function init(Constants) {
           "fileName": "/Wall-Image-1.jpg",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Wall-Image-1.jpg",
@@ -262,7 +264,7 @@ export function init(Constants) {
           "fileName": "/Nyasa_medieval_moroccan_bazaar_7199ce13-105c-47ce-bd35-bcf450993d91.jpg",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Nyasa_medieval_moroccan_bazaar_7199ce13-105c-47ce-bd35-bcf450993d91.jpg",
@@ -296,7 +298,7 @@ export function init(Constants) {
           "fileName": "/Wall-Image-5.jpg",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Wall-Image-5.jpg",
@@ -330,7 +332,7 @@ export function init(Constants) {
           "fileName": "/Wall-Image-6.jpg",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Wall-Image-6.jpg",
@@ -433,7 +435,7 @@ export function init(Constants) {
           "fileName": "/Wall-Image-25-LARGE.jpg",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Wall-Image-25-LARGE.jpg",
@@ -466,7 +468,7 @@ export function init(Constants) {
           "fileName": "/Wall-Image-10.jpg",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Wall-Image-10.jpg",
@@ -500,7 +502,7 @@ export function init(Constants) {
           "fileName": "/Wall-Image-13.jpg",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Wall-Image-13.jpg",
@@ -534,7 +536,7 @@ export function init(Constants) {
           "fileName": "/Screenshot 2023-06-19 at 1.47.53 PM (1).png",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Screenshot 2023-06-19 at 1.47.53 PM (1).png",
@@ -608,7 +610,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -644,7 +646,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -680,7 +682,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -786,7 +788,7 @@ export function init(Constants) {
           ],
           "fileName": "/Untitled.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/Untitled.glb",
@@ -894,7 +896,7 @@ export function init(Constants) {
           ],
           "fileName": "/fruit_veg_market.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/fruit_veg_market.glb",
@@ -1044,7 +1046,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -1080,7 +1082,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -1116,7 +1118,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -1152,7 +1154,7 @@ export function init(Constants) {
           ],
           "fileName": "/Fez_Market Woman.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/Fez_Market Woman.glb",
@@ -1224,7 +1226,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -1260,7 +1262,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -1296,7 +1298,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -1440,7 +1442,7 @@ export function init(Constants) {
           ],
           "fileName": "/fruit_veg_market.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/fruit_veg_market.glb",
@@ -1472,7 +1474,7 @@ export function init(Constants) {
           "fileName": "/Wall-image-LARGE-22.jpg",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Wall-image-LARGE-22.jpg",
@@ -1546,7 +1548,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -1582,7 +1584,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -1618,7 +1620,7 @@ export function init(Constants) {
           ],
           "fileName": "/low_poly_horse.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/low_poly_horse.glb",
@@ -1654,7 +1656,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -1690,7 +1692,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -1726,7 +1728,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -1762,7 +1764,7 @@ export function init(Constants) {
           ],
           "fileName": "/low_poly_horse.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/low_poly_horse.glb",
@@ -1798,7 +1800,7 @@ export function init(Constants) {
           ],
           "fileName": "/low_poly_horse.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/low_poly_horse.glb",
@@ -1834,7 +1836,7 @@ export function init(Constants) {
           ],
           "fileName": "/low_poly_horse.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/low_poly_horse.glb",
@@ -1978,7 +1980,7 @@ export function init(Constants) {
           ],
           "fileName": "/fruit_veg_market.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/fruit_veg_market.glb",
@@ -2010,7 +2012,7 @@ export function init(Constants) {
           "fileName": "/Wall-Image-11.jpg",
           "fullBright": true,
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "img",
           "name": "/Wall-Image-11.jpg",
@@ -2080,7 +2082,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -2116,7 +2118,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -2152,7 +2154,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -2225,7 +2227,7 @@ export function init(Constants) {
           ],
           "fileName": "/wood_crates.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/wood_crates.glb",
@@ -2261,7 +2263,7 @@ export function init(Constants) {
           ],
           "fileName": "/wood_crates.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/wood_crates.glb",
@@ -2333,7 +2335,7 @@ export function init(Constants) {
           ],
           "fileName": "/hay_bale.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/hay_bale.glb",
@@ -2364,7 +2366,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2400,7 +2402,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2436,7 +2438,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2472,7 +2474,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2508,7 +2510,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2544,7 +2546,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2580,7 +2582,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2616,7 +2618,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2652,7 +2654,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2688,7 +2690,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2724,7 +2726,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2760,7 +2762,7 @@ export function init(Constants) {
           ],
           "fileName": "/sheep-ver2.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/sheep-ver2.glb",
@@ -2872,7 +2874,7 @@ export function init(Constants) {
           ],
           "fileName": "/fruit_veg_market.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/fruit_veg_market.glb",
@@ -2908,7 +2910,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -2944,7 +2946,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -2980,7 +2982,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -3016,7 +3018,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -3052,7 +3054,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -3088,7 +3090,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -3124,7 +3126,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -3160,7 +3162,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -3196,7 +3198,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",
@@ -3232,7 +3234,7 @@ export function init(Constants) {
           ],
           "fileName": "/fruit_veg_market.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/fruit_veg_market.glb",
@@ -3443,7 +3445,7 @@ export function init(Constants) {
           ],
           "fileName": "/camel.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/camel.glb",
@@ -4045,7 +4047,7 @@ export function init(Constants) {
           ],
           "fileName": "/goat.glb",
           "layers": [
-              "pointer"
+              "pointer", "walk"
           ],
           "modelType": "glb",
           "name": "/goat.glb",

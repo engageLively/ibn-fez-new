@@ -114,6 +114,7 @@ class ShowSalesOnApproach {
                 name: "avatarCard",
                 translation: [-19.322626016340624, -0.00941893210761106, -72.84095522150123],
                 behaviorModules: ["Canvas", "Buy"],
+                layers: ["walk"],
                 rotation:[ 0, -0.02717047631159505, 0, 0.9996308144595188],
                 scale: [3, 3, 3],
                 type: "2d",
