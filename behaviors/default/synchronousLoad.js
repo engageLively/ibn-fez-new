@@ -15,7 +15,17 @@ class SynchronousCardLoaderPawn {
         }
 
         this.coverInPlace = true;
-        this.future(10000).allSynchronousCardsLoaded();
+        this.future(80000).allSynchronousCardsLoaded();
+        /* window.addEventListener(
+            "message",
+            (event) => {
+              // if (event.origin !== "http://127.0.0.1:9011") return;
+              if (event.origin !== "https://matt.engageLively.com/") return;
+              this.allSynchronousCardsLoaded();
+            },
+            false
+        ); */
+          
     }
 
     synchronousLoadCardsStarted() {
@@ -30,14 +40,23 @@ class SynchronousCardLoaderPawn {
         initialCoverDiv.style.opacity = "0.95";
         window.initialCoverDiv = initialCoverDiv;
         document.body.appendChild(initialCoverDiv);
+        this.iframe = document.createElement('iframe');
+        this.iframe.style.width = '100%';
+        this.iframe.style.height = '100%';
+        const url = 'https://matt.engageLively.com/fez-intro/index.html';
+        // const url = 'http://127.0.0.1:9011/fez-intro/bin/fez-intro/index.html'
+        console.log(`Loading ${url}`)
+        this.iframe.src = url; 
+        initialCoverDiv.appendChild(this.iframe)
+
        
-        this.canvas = document.createElement('canvas');
+        /* this.canvas = document.createElement('canvas');
         this.canvas.style.width="100%"
         this.canvas.style.height="100%";
         this.canvas.style.backgroundColor = "#000000";
         initialCoverDiv.appendChild(this.canvas)
         this.angle = 0;
-        this.future(20).canvasStep()
+        this.future(20).canvasStep() */
        
 
        /*  this.spinner = document.createElement("video");
