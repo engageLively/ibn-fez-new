@@ -113,7 +113,7 @@ class ShowSalesOnApproach {
         this.popupCards = [
             this.createCard({
                 name: "avatarCard",
-                translation: [-19.123651261474112, -0.04941893210761106, -72.84095522150123],
+                translation: [-16.242840980951396, -0.04941893210761106, -72.84095522150123],
                 behaviorModules: ["Canvas"],
                 rotation: [0, 0, 0, 1],
                 scale: [3, 3, 3],
@@ -127,13 +127,13 @@ class ShowSalesOnApproach {
             }),
             this.createCard({
                 name: "camelCard",
-                translation: [-21.68224079931403, -0.5934313462079328, -72.84095522150123],
+                translation: [-19.12141357863967, -0.5934313462079328, -72.84095522150123],
                 behaviorModules: [ "Buy"],
                 rotation: [0, 0, 0, 1],
                 scale: [3, 3, 3],
                 type: "2d",
                 textureType: "image",
-                textureLocation: "https://matt.engageLively.com/assets/ITF/buy_a_camel.png",
+                textureLocation: "https://matt.engagelively.com/assets/ITF/buy_camel_new.png",
                 depth: 0.05,
                 cornerRadius: 0.1,
 
