@@ -43,9 +43,11 @@ class ShowSalesOnApproach {
     purchase(name) {
         const purchased = this.goods[0]
         this.goodsIndex = this.goods.indexOf(purchased)
-        purchased.quantity--;
-        this.avatarValue.camel++;
-        this.avatarValue.shells -= purchased.price
+        if (this.avatarValue.shells >= purchased.price) {
+            purchased.quantity--;
+            this.avatarValue.camel++;
+            this.avatarValue.shells -= purchased.price
+        }
         this.updateDisplay()
     }
 
