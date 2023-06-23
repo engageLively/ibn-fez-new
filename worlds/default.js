@@ -14,8 +14,8 @@ export function init(Constants) {
       dataLocation: `./assets/avatars/${name}.zip`,
       dataRotation: [0, Math.PI, 0],
       dataScale: [0.3, 0.3, 0.3],
-      xBounds: [-20, 20],
-      zBounds: [-30, 2],
+      xBounds: [-26, 20],
+      zBounds: [-75, 75],
       behaviorModules: ["FezWalker"]
     }));
     Constants.UserBehaviorDirectory = "behaviors/default";
