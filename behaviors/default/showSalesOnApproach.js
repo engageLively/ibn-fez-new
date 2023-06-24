@@ -114,7 +114,7 @@ class ShowSalesOnApproach {
         this.popupCards = [
             this.createCard({
                 name: "avatarCard",
-                translation: [-19.322626016340624, -0.00941893210761106, -72.84095522150123],
+                translation: [-20.322626016340624, -0.00941893210761106, -44.84095522150123],
                 behaviorModules: ["Canvas", "Buy"],
                 layers: ["pointer", "walk"],
                 rotation:[ 0, -0.02717047631159505, 0, 0.9996308144595188],
