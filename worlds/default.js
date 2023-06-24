@@ -16,7 +16,7 @@ export function init(Constants) {
     }));
     Constants.UserBehaviorDirectory = "behaviors/default";
     Constants.UserBehaviorModules = [
-        "ambientSound.js", "csmLights.js", "drawingCanvas.js", "fezWalker.js", "showSalesOnApproach.js", 'synchronousLoad.js', 'text3D.js'
+        "ambientSound.js", "animateOnApproach.js", "csmLights.js", "drawingCanvas.js", "fezWalker.js", "showSalesOnApproach.js", 'synchronousLoad.js', 'text3D.js'
     ];
 
     const frameColor = 0x888888;
@@ -519,7 +519,11 @@ export function init(Constants) {
         },
         {
             "card": {
-                "animationClipIndex": 0,
+                "animationClipIndex": 1,
+                animationDistantAnimationClip: 1,
+                animationProximateAnimationClip: 0,
+                animationCheckInterval: 50,
+                animationProximateDistance: 40,
                 "animationStartTime": 3669678,
                 "dataLocation": "3zMmADA2h6svaZE7pMW8-HPdxlDHBMP7ObX6KjKcxghUEg4OCglAVVUcExYfCVQPCVQZCBULDx8OVBMVVQ9VFBM1CDE8TE9IEjQ9LxQpSAoUDjFMPisoSDMLSFUZFRdUDxYOEwkTF1QWExQeG1QYHwgUGwgeVBcTGQgVDB8ICR9VEQsiTj9OCBQ3SjgUChAVOQgWHEIWSAMlHT0uMExDGDciCw0LDwxLI0NJHVUeGw4bVRxOMz4DGxQ3EjlNLjcTCRlIDQIRGws7HBAZEwxNNBMjHk8PESsWHzQTPDs",
                 "dataScale": [
@@ -539,7 +543,7 @@ export function init(Constants) {
                 "translation": [-22.433594421113224, -1.5129714868153492, -45.23414159691042],
                 rotation: [-0.6982105654371599, 0, 0, 0.715892454431475],
                 "type": "3d",
-                behaviorModules: ['ShowSalesOnApproach'],
+                behaviorModules: ['ShowSalesOnApproach', 'AnimateOnApproach'],
                 showSalesProximateDistance: 40
             },
             "id": "0016"
@@ -563,8 +567,9 @@ export function init(Constants) {
         
         {
             "card": {
-                "animationClipIndex": 0,
+                "animationClipIndex": 1,
                 "animationStartTime": 21436535,
+               
                 "dataLocation": "30GR708HcDGezrcJF5Pw9KNLH_ZVZCkQDj6br9Rru3tMWEREQEMKHx9WWVxVQx5FQx5TQl9BRVVEHllfH0UfXll_Qnt2BgUCWH53ZV5jAkBeRHsGdGFiAnlBAh9TX10eRVxEWUNZXR5cWV5UUR5SVUJeUUJUHl1ZU0JfRlVCQ1UfeHdHVXJXYEF-CHgCAHZHfVNJZnl-SXt-AgN5ZFFJBgEEWUZhUn1EYWpFYR9UUURRHwhGdlVZY3Nkc3hJWWRWBwQGXXlGXltKVEhFVUoEXHhjXlF-V1JEc1NkZXU",
                 "dataScale": [
                     8.777463145724749,
