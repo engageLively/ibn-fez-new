@@ -283,7 +283,7 @@ export function init(Constants) {
                 "fileName": "/Wall-image-LARGE-22.jpg",
                 "fullBright": true,
                 "layers": [
-                    "pointer"
+                    "pointer", "walk"
                 ],
                 "modelType": "img",
                 "name": "/Wall-image-LARGE-22.jpg",
