@@ -58,8 +58,10 @@ export function init(Constants) {
                 "behaviorModules": [
                     "Light"
                 ],
-                "dataLocation": "3OF2-s4U1ZOJduGATmLEIXo1iTkQHd5ZBknKgL5SvqpQJzs7Pzx1YGApJiMqPGE6PGEsPSA-Oio7YSYgYDpgCCsZLTYjBjwOJB4sDRcrfAg3Ljk2OBoEGBYWfWAmIGEsPSA-Oio7YSImLD0gOSo9PCpgPwB9AAIIISx8YiYneScqKyQaIisNLHkaGT8YKg56JQwQfHstPiNiGQ49e2ArLjsuYCMBPgMiCQt3OQskGhcleSp9HQIIfXseHgo7EAo9CB48FRwpegsCLH4OIwY",
-                "dataType": "jpg",
+                "dataLocation": "3VaI7mtuRF7yCjegxX7rZNsO1LzAhxdVX9giltjyhiS0PiIiJiVseXkwPzozJXgjJXg1JDknIzMieD85eSN5LAMiIQYZLBAjGQVnHT8xGww_Y2VvLhASEW5mZHk_OXg1JDknIzMieDs_NSQ5IDMkJTN4Ojk1NzoyMyAyMzA3IzoieRc1HAYeMBQTAHsnDDsuETMDYjAcJWclEzcnYTBvHhszJwEYBwIFMQEiFWZ5MjciN3keb2RiGy4DbwYlF2QXLjQUZiAeAAZgJhpuMWRgOiEXMQ8CMx8iBAklMTk1",
+                "dataType": "exr",
+                /* "dataLocation": "3OF2-s4U1ZOJduGATmLEIXo1iTkQHd5ZBknKgL5SvqpQJzs7Pzx1YGApJiMqPGE6PGEsPSA-Oio7YSYgYDpgCCsZLTYjBjwOJB4sDRcrfAg3Ljk2OBoEGBYWfWAmIGEsPSA-Oio7YSImLD0gOSo9PCpgPwB9AAIIISx8YiYneScqKyQaIisNLHkaGT8YKg56JQwQfHstPiNiGQ49e2ArLjsuYCMBPgMiCQt3OQskGhcleSp9HQIIfXseHgo7EAo9CB48FRwpegsCLH4OIwY",
+                "dataType": "jpg", */
                 "fileName": "/abandoned_parking_4k.jpg",
                 "layers": [
                     "light"
@@ -75,7 +77,7 @@ export function init(Constants) {
                 "fileName": "/1. Reduced Archway.png",
                 "fullBright": true,
                 "layers": [
-                    "pointer"
+                    "pointer", "walk"
                 ],
                 "modelType": "img",
                 "name": "/1. Reduced Archway.png",
@@ -249,7 +251,7 @@ export function init(Constants) {
                 ],
                 "fileName": "/6.Lets See Fez Market Inclusive Model.glb",
                 "layers": [
-                    "pointer"
+                    "pointer", "walk"
                 ],
                 "modelType": "glb",
                 "name": "/6.Lets See Fez Market Inclusive Model.glb",
