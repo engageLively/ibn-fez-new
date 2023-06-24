@@ -14,12 +14,12 @@ class CanvasActor{
     }
 
     drawText(data) {
-        let {name, lines, shells} = data;
+        let {name} = data;
         if (name != this._name) {
             // not for us, return
             return
         }
-        this.say("drawTextPawn", {lines: lines, shells: shells})
+        this.say("drawTextPawn", data)
     }
 
     step() {
@@ -56,7 +56,7 @@ class CanvasPawn {
             // Otherwise just draw the background
             this.imageLoaded = true;
             if (this.linesWaiting) {
-                this.drawText(this.linesWaiting)
+                this.drawText(this.dataWaiting)
             } else {
                 this.drawBackground();
             }
@@ -82,13 +82,24 @@ class CanvasPawn {
         this.texture.needsUpdate = true;
     }
 
-    drawText(lines) {
-        
-        if (this.imageLoaded){
-            this.drawBackground();
-            this.future(20).writeText(lines); // make sure we write the text on top of the background
+    _drawText(data) {
+        this.drawBackground();
+        this.future(20).writeText(data); // make sure we write the text on top of the background
+
+    }
+
+    drawText(data) {
+        let {lines, shells, flash} = data
+        if (this.imageLoaded) {
+            if (flash) {
+                this.drawAll();
+                this.future(50)._drawText(data)
+            } else {
+                this._drawText(data)
+            }
+            
         } else {
-            this.linesWaiting = lines; // hold onto the lines until the image is loaded
+            this.dataWaiting = {lines: lines, shells: shells, flash: false}; // hold onto the lines until the image is loaded
         }
     }
 
@@ -127,9 +138,9 @@ class CanvasPawn {
 
     }
 
-    drawBackground() {
+    drawBackground(color = 'brown') {
         const ctx = this.canvas.getContext("2d");
-        this.clear('brown')
+        this.clear(color)
        
         ctx.drawImage(this.image, 0, 0);
         this.texture.needsUpdate = true;

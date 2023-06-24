@@ -48,7 +48,7 @@ class ShowSalesOnApproach {
             this.avatarValue.camel++;
             this.avatarValue.shells -= purchased.price
         }
-        this.updateDisplay()
+        this.updateDisplay(true)
     }
 
     _loadFields() {
@@ -131,7 +131,7 @@ class ShowSalesOnApproach {
 
         
         this.showing = true;
-        this.future(100).updateDisplay();
+        this.future(100).updateDisplay(false);
 
     }
 
@@ -151,13 +151,14 @@ class ShowSalesOnApproach {
         return [product.item, this._makeLine(product, 'quantity'), this._makeLine(product, 'price')]
     }
 
-    updateDisplay() {
+    updateDisplay(flash = false) {
         
         // this.cardsByName.avatarCard._cardData.text = keys.map(key =>  this._makeLine(this.avatarValue, key)).join('\n')
         this.publish("global", "drawTextActor", {
             name: "avatarCard",
             lines: this.avatarKeys.map(key => /* this._makeLine(this.avatarValue, key) */ this.avatarValue[key]),
-            shells: this.avatarValue.shells
+            shells: this.avatarValue.shells,
+            flash: flash
         })
        // this.say('updateShape')
 
