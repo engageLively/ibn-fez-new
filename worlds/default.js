@@ -111,7 +111,7 @@ export function init(Constants) {
                 "fileName": "/Nyasa_medieval_moroccan_bazaar_7199ce13-105c-47ce-bd35-bcf450993d91.png",
                 "fullBright": true,
                 "layers": [
-                    "pointer"
+                    "pointer", "walk"
                 ],
                 "modelType": "img",
                 "name": "/Nyasa_medieval_moroccan_bazaar_7199ce13-105c-47ce-bd35-bcf450993d91.png",
