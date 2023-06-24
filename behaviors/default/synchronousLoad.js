@@ -15,16 +15,17 @@ class SynchronousCardLoaderPawn {
         }
 
         this.coverInPlace = true;
-        this.future(40000).allSynchronousCardsLoaded();
-        /* window.addEventListener(
+        this.future(50000).allSynchronousCardsLoaded();
+        window.addEventListener(
             "message",
             (event) => {
-              // if (event.origin !== "http://127.0.0.1:9011") return;
-              if (event.origin !== "https://matt.engageLively.com/") return;
-              this.allSynchronousCardsLoaded();
+                console.log('Message received: ' + event)
+                // if (event.origin !== "http://127.0.0.1:9011") return;
+                if (event.origin !== "https://matt.engageLively.com/") return;
+                this.allSynchronousCardsLoaded();
             },
             false
-        ); */
+        );
           
     }
 
