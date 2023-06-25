@@ -612,7 +612,7 @@ export function init(Constants) {
                 "fileName": "/Wall-Image-10.jpg",
                 "fullBright": true,
                 "layers": [
-                    "pointer"
+                    "pointer", "walk"
                 ],
                 "modelType": "img",
                 "name": "/Wall-Image-10.jpg",
