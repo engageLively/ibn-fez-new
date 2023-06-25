@@ -535,7 +535,7 @@ export function init(Constants) {
                 ],
                 "fileName": "/2Camel Seller 24 frame ratemerge material ts 1024 2 animations.Fbx",
                 "layers": [
-                    "pointer"
+                    /* "pointer" */
                 ],
                 "modelType": "fbx",
                 "name": "/2Camel Seller 24 frame ratemerge material ts 1024 2 animations.Fbx",
