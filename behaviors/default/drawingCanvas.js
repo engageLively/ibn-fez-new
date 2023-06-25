@@ -91,12 +91,13 @@ class CanvasPawn {
     drawText(data) {
         let {lines, shells, flash} = data
         if (this.imageLoaded) {
-            if (flash) {
+            /* if (flash) {
                 this.drawAll();
                 this.future(50)._drawText(data)
             } else {
                 this._drawText(data)
-            }
+            } */
+            this._drawText(data);
             
         } else {
             this.dataWaiting = {lines: lines, shells: shells, flash: false}; // hold onto the lines until the image is loaded
