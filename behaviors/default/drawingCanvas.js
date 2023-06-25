@@ -55,7 +55,7 @@ class CanvasPawn {
             // waiting to be drawn, draw them (this will also draw the background).
             // Otherwise just draw the background
             this.imageLoaded = true;
-            if (this.linesWaiting) {
+            if (this.dataWaiting) {
                 this.drawText(this.dataWaiting)
             } else {
                 this.drawBackground();
