@@ -2,6 +2,7 @@ class SynchronousCardLoaderPawn {
     setup() {
         this.background = new Image()
         this.background.src = 'https://matt.engagelively.com/assets/ITF/Intro-to-Fez-Background.png';
+        
         this.background.crossOrigin = 'Anonymous'
         this.background.onload = _ => {
             console.log('background loaded')
@@ -15,7 +16,7 @@ class SynchronousCardLoaderPawn {
         }
 
         this.coverInPlace = true;
-        this.future(50000).allSynchronousCardsLoaded();
+        // this.future(50000).allSynchronousCardsLoaded();
         window.addEventListener(
             "message",
             (event) => {
@@ -44,8 +45,10 @@ class SynchronousCardLoaderPawn {
         this.iframe = document.createElement('iframe');
         this.iframe.style.width = '100%';
         this.iframe.style.height = '100%';
-        const url = 'https://matt.engageLively.com/fez-intro/index.html';
+        // const url = 'https://matt.engageLively.com/fez-intro/index.html';
         // const url = 'http://127.0.0.1:9011/fez-intro/bin/fez-intro/index.html'
+        // const url = 'http://127.0.0.1:9011/local_projects/rickmcgeer--test1/build/index.html'
+        const url = 'https://matt.engageLively.com/fez-test/index.html';
         console.log(`Loading ${url}`)
         this.iframe.src = url; 
         initialCoverDiv.appendChild(this.iframe)
