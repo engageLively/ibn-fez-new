@@ -22,7 +22,7 @@ class SynchronousCardLoaderPawn {
             (event) => {
                 console.log('Message received: ' + event.origin)
                 // if (event.origin !== "http://127.0.0.1:9011") return;
-                if (!event.origin.startswith("https://matt.engageLively.com")) return;
+                if (!event.origin.startsWith("https://matt.engageLively.com")) return;
                 this.allSynchronousCardsLoaded();
             },
             false
